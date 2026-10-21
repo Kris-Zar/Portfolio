@@ -16,7 +16,7 @@ const PORTFOLIO_DATA = {
     tagline: "Making things that make machines think.",
     subTagline: "AI Engineer · Automation Systems",
     status: "Building Systems",
-    terminalLine: "> systems.run() — 4 projects shipped. 2 live. Still building.",
+    terminalLine: "> systems.run() — 6 projects shipped. 5 live. Still building.",
     email: "parth_saxena44@yahoo.com",
     location: "Based in Kanpur, UP",
     experience: "~2 years in. Still building.",
@@ -182,7 +182,7 @@ const PORTFOLIO_DATA = {
       id: "movierec",
       num: "ISSUE 04",
       tab: "RecSys",
-      status: "Interactive ML App",
+      status: "Live on Streamlit",
       title: "MovieRec",
       tagline: "Collaborative Filtering & TMDB Hybrid Recommender",
       accent: "#3B82F6",
@@ -199,7 +199,7 @@ const PORTFOLIO_DATA = {
       ],
       stack: ["Python", "Streamlit", "Scikit-learn", "SciPy", "Collaborative Filtering", "Pandas", "Cosine Similarity", "TMDB API"],
       githubUrl: "https://github.com/Kris-Zar/Movie-Recommendation-App",
-      demoUrl: "https://github.com/Kris-Zar/Movie-Recommendation-App"
+      demoUrl: "https://movie-recommendation-app-5j2pzqbjz6wsfpwnjcsuul.streamlit.app/"
     },
     {
       id: "heart-disease-predictor",

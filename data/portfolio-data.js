@@ -1,273 +1,334 @@
 /**
  * =========================================================================
- * PORTFOLIO DATA CONFIGURATION — GRAPHIC NOVEL MEMOIR
+ * PARTH SAXENA — PORTFOLIO DATA CONFIGURATION
  * =========================================================================
- * 
- * Authentic narrative data for AI Engineer & Automation Systems builder.
- * All sections, dialogue caption boxes, project cards, philosophy quotes,
- * and Kanpur roots read dynamically from this file.
+ * Mapped to: kris-zar.github.io/Portfolio
+ * Every section matches the verified narrative copy. Bold. No fluff.
  * =========================================================================
  */
 
 const PORTFOLIO_DATA = {
   // Identity & Opening Hook
   personal: {
-    name: "AI Engineer", // Placeholder or customizable in Quick-Edit modal
-    role: "AI Engineer · Automation Systems",
-    hook: "Built from first principles.",
-    tagline: "Making things that make life work.",
-    subtext: "Stepping into a space that's already purposeful. Not a showcase. A signal.",
-    status: "Open to High-Impact Automation & AI Systems",
-    email: "builder@firstprinciples.dev",
-    location: "Kanpur, UP · Manchester of the East",
+    name: "Parth Saxena",
+    role: "AI Engineer · Building Systems",
+    roleLabel: "AI Engineer · Building Systems",
+    tagline: "Making things that make machines think.",
+    subTagline: "AI Engineer · Automation Systems",
+    status: "Building Systems",
+    terminalLine: "> systems.run() — 4 projects shipped. 2 live. Still building.",
+    email: "parth_saxena44@yahoo.com",
+    location: "Based in Kanpur, UP",
     experience: "~2 years in. Still building.",
     socials: [
-      { name: "GitHub", url: "https://github.com", icon: "github", label: "Code & Systems" },
-      { name: "LinkedIn", url: "https://linkedin.com", icon: "linkedin", label: "Professional" },
-      { name: "X / Twitter", url: "https://x.com", icon: "twitter", label: "Thoughts & Builds" },
-      { name: "Resume", url: "#resume", icon: "file-text", label: "Read Resume" }
+      { name: "GitHub", url: "https://github.com/Kris-Zar", icon: "github", label: "Code & Repos" },
+      { name: "LinkedIn", url: "https://linkedin.com/in/parth-saxena-dev", icon: "linkedin", label: "Professional" },
+      { name: "Hugging Face", url: "https://huggingface.co/Parth-Saxena", icon: "cpu", label: "Live Spaces" },
+      { name: "Portfolio", url: "https://kris-zar.github.io/Portfolio", icon: "globe", label: "Live Site" }
     ]
   },
 
-  // Section 2: The Belief Statement
+  // Section 2: The Stance (Belief Statement)
   belief: {
-    kicker: "The Stance",
-    headline: "I don't follow paths that were already carved. I carve my own.",
-    body: "I don't build things that just work. I build things that are meaningful, polished, and fitted so well to the problem that you wonder why they didn't exist before.",
-    punchline: "That's the only kind of work I know how to do."
+    kicker: "✦ THE STANCE",
+    headline: "I don't train models to get metrics. I train them to solve things.",
+    leadPrefix: "I don't train models to get metrics.",
+    highlight: "I train them to solve things.",
+    body: "I don't stop at accuracy scores. A model that hits 92% in a notebook and breaks in production isn't a win — it's a warning sign.\n\nEvery project I build goes all the way. Data pipeline. Training. Evaluation. Deployment. Real users. That's the standard I hold myself to, even as a student.",
+    punchline: "If it doesn't ship, it doesn't count."
   },
 
-  // Section 3: What I Actually Do
+  // Section 3: The Craft (What I Actually Do)
   whatIDo: {
-    kicker: "The Craft",
-    headline: "Automation systems powered by AI.",
-    body: "Things that handle the repetitive, the tedious, and the easy-to-miss — so you can focus on what actually matters.",
-    clarity: "Not magic. Just good thinking, applied carefully.",
+    kicker: "⚙️ THE CRAFT",
+    headline: "I build AI systems that actually run.",
+    subQuote: "Not demos. Not Colab notebooks. Deployed, working products.",
     capabilities: [
       {
-        title: "Intelligent Workflows",
-        desc: "End-to-end agents and automated pipelines that replace manual friction with dependable precision.",
-        icon: "cpu"
+        icon: "⚡",
+        title: "ML Pipelines & Fraud Intelligence",
+        desc: "End-to-end data pipelines built for real-world noise — class imbalance, missing data, adversarial edge cases. Every model ships with explainability baked in."
       },
       {
-        title: "Computer Vision & Edge AI",
-        desc: "Turning real-time imagery, feeds, and sensory inputs into structured, actionable understanding.",
-        icon: "eye"
+        icon: "👁️",
+        title: "Multimodal & Emotion AI",
+        desc: "Audio. Vision. Text. Combining signals to make machines that understand context — not just classify inputs."
       },
       {
-        title: "System Architecture",
-        desc: "Lean, resilient backends designed from first principles with zero bloated dependencies.",
-        icon: "layers"
+        icon: "🧱",
+        title: "Full-Stack AI Deployment",
+        desc: "FastAPI backends. React frontboards. MongoDB. Docker. I deploy my own models because I want to understand every layer they run on."
       }
     ]
   },
 
-  // Section 4: The Origin Journey
+  // Section 4: The Origin (~2 Years In)
   origin: {
-    kicker: "The Origin",
-    timeline: "~2 years in. Still building.",
-    premise: "I started because I had problems I couldn't find tools for. Not a textbook reason. A real one.",
-    frustrations: [
+    kicker: "⏳ THE ORIGIN",
+    headline: "~2 years in. Every project started as a frustration.",
+    body: "I didn't get into AI because it was trending. I got into it because I kept running into problems that existing tools were too dumb, too expensive, or too inflexible to solve. So I built the tools myself.",
+    panels: [
       {
-        problem: "Meal logging apps were too expensive.",
-        catalyst: "Why should nutrition tracking cost a fortune just to understand what you eat?",
-        outcome: "Built an image-based intelligent scanner."
+        num: "PANEL 01 · NUTRITION",
+        art: "🥑",
+        problem: "Calorie apps made me enter every ingredient by hand.",
+        resolution: "→ BUILT NUTRITRACK-PRO",
+        detail: "Photograph food. Get macros instantly. Gemini Vision API. 92% accuracy. 80% less manual work."
       },
       {
-        problem: "Studying without a system was chaos.",
-        catalyst: "Distraction isn't a personality flaw. It is an unengineered workspace problem.",
-        outcome: "Created a focused Pomodoro cadence."
+        num: "PANEL 02 · FOCUS",
+        art: "⏱️",
+        problem: "Studying without structure was pure chaos.",
+        resolution: "→ BUILT TRACKDOWN",
+        detail: "Pomodoro tracker with streaks and visual progress. Built it in a weekend. Still use it every day."
       },
       {
-        problem: "Wanted a quiet check if people around me were okay.",
-        catalyst: "Human emotions are quiet and easy to overlook in the rush of life.",
-        outcome: "Trained an empathetic vision model."
+        num: "PANEL 03 · EMPATHY",
+        art: "🤍",
+        problem: "Wanted a quiet way to know if someone around me was struggling.",
+        resolution: "→ BUILT MOODWAVE",
+        detail: "Speak into it. It reads your emotional state. CNN on audio features. 87% accuracy. Live on Hugging Face."
+      },
+      {
+        num: "PANEL 04 · TRUST",
+        art: "🔍",
+        problem: "Fraud detection systems shouldn't be a black box.",
+        resolution: "→ BUILT FRAUDLENS",
+        detail: "284,807 real transactions. Random Forest + SHAP. Every decision explained. Live on Hugging Face."
       }
-    ],
-    closing: "So I built things. Not because someone asked. Because I couldn't not. Every project started as a personal frustration and ended as something someone else might actually use."
+    ]
   },
 
-  // Section 5: The Works (Project tabs & deep dives)
+  // Section 5: Selected Work (5 Project Cards)
+  projectsMeta: {
+    kicker: "📁 SELECTED WORK",
+    headline: "Selected Projects.",
+    subline: "Things I've engineered and shipped.",
+    shippedCount: "05 Projects",
+    focusAreas: "Vision AI · NLP · Fraud · GenAI"
+  },
+
   projects: [
     {
-      id: "nutritrack",
-      title: "NutriTrack",
-      tagline: "Image-Based Meal Analysis",
-      category: "Vision AI & Automation",
-      tab: "AI & Vision",
-      accent: "#2E7D32", // Forest green
-      beforeQuote: "Meal logging was broken for me. The good tools cost too much.",
-      afterQuote: "So I fixed it. Simple, accessible, done.",
-      description: "A fast, privacy-focused visual nutrition assistant that breaks down meal macronutrients, portion sizes, and dietary insights from a single quick photo snapshot.",
-      problem: "Popular macro-tracking apps lock basic camera logging behind steep recurring paywalls, clunky multi-step food database lookups, and intrusive ads.",
-      solution: "Engineered a lightweight visual recognition pipeline combining quantized vision models and dietary knowledge bases to parse meals in under 400ms.",
+      id: "fraudlens",
+      num: "ISSUE 01",
+      tab: "Fraud AI",
+      status: "Live on Hugging Face",
+      title: "FraudLens",
+      tagline: "Real-Time Credit Card Fraud Detection",
+      accent: "#E25241",
+      beforeQuote: "Every fraudulent transaction left a pattern. I just made a machine that reads it.",
+      afterQuote: "284,807 transactions. 0.17% fraud. It catches what humans miss — and explains exactly why.",
+      description: "An end-to-end ML pipeline trained on real credit card transaction data. Built to handle extreme class imbalance using MCC + F1 dual-metric strategy — because accuracy alone is a lie when fraud is 0.17% of your data. Deployed on Hugging Face with real-time fraud probability scoring, a risk gauge, and full SHAP feature contribution breakdown. Every prediction is auditable. No black boxes.",
+      problem: "Credit card transaction datasets suffer from extreme 0.17% fraud skew. Naive classifiers achieve 99.8% nominal accuracy while failing on actual fraud cases, leaving financial institutions vulnerable with zero decision explainability.",
+      solution: "Engineered an end-to-end Random Forest pipeline optimized on MCC and F1 dual metrics. Integrated live TreeSHAP attribution to extract auditable per-transaction risk factors with an interactive risk gauge deployed on Hugging Face Spaces.",
       highlights: [
-        "Real-time food item segmentation and volume estimation",
-        "Calorie & macro breakdown with zero manual search friction",
-        "100% accessible and designed for everyday meal habits"
+        "Trained on 284,807 real European credit card transactions with strict validation discipline",
+        "MCC + F1-score dual metric strategy neutralizing extreme 0.17% fraud class imbalance",
+        "Real-time SHAP feature contribution waterfalls — every single decision is transparently auditable",
+        "Containerized interactive deployment on Hugging Face Spaces with instant probability scoring"
       ],
-      stack: ["Python", "FastAPI", "Vision AI", "React", "TailwindCSS"],
-      status: "Shipped & Tested",
-      demoUrl: "#",
-      githubUrl: "#"
+      stack: ["Python", "Random Forest", "Scikit-learn", "SHAP", "Pandas", "NumPy"],
+      githubUrl: "https://github.com/Kris-Zar/FraudLens",
+      demoUrl: "https://huggingface.co/spaces/Parth-Saxena/FraudLens"
+    },
+    {
+      id: "moodwave",
+      num: "ISSUE 02",
+      tab: "Human AI",
+      status: "Live on Hugging Face",
+      title: "MoodWave",
+      tagline: "Multimodal Voice & Text Emotion Detection",
+      accent: "#8B5CF6",
+      beforeQuote: "A quiet sanity check.",
+      afterQuote: "For the moments when you don't know if someone is okay — including yourself.",
+      description: "Speak into it. It classifies your emotional state across 6 categories — Angry, Sad, Happy, Fear, Disgust, Neutral. Not just audio. Multimodal. The CNN reads your voice (96 Mel bands + 40 MFCCs). The text layer reads your words via Web Speech API. When they disagree, the system resolves the contradiction intelligently. Plays mood-matched YouTube playlists. Serves mindfulness prompts per emotion. Dockerised. Deployed. Cyberpunk UI built from scratch.\n\nMy role: Full frontend, system integration & repo maintainer. ML & backend: Atharva Shukla.",
+      problem: "Emotion detection often relies on single modality models that fail when vocal tone and verbal sentiment contradict each other (e.g., sarcasm or emotional suppression).",
+      solution: "Engineered a multimodal fusion system coupling a 2D CNN acoustic model with client-side Web Speech text analysis, intelligent contradiction resolution, mood-matched audio therapy, and Docker containerization.",
+      highlights: [
+        "87% test accuracy on voice acoustics using 2D CNN across 96 Mel spectrogram bands & 40 MFCCs",
+        "Multimodal fusion resolving acoustic vs semantic verbal discrepancies in real-time",
+        "Curated mood-matched YouTube playlists and contextual mindfulness exercises per emotional state",
+        "Full frontend architecture, Web Audio API DSP pipeline, Docker packaging & Hugging Face deployment"
+      ],
+      stack: ["TensorFlow", "CNN", "Librosa", "FastAPI", "Docker", "Web Audio API", "React"],
+      githubUrl: "https://github.com/Kris-Zar/Emotion-Detection-System-",
+      demoUrl: "https://huggingface.co/spaces/Atharv-Parth/Emotion-Detection-System"
+    },
+    {
+      id: "nutritrack-pro",
+      num: "ISSUE 03",
+      tab: "GenAI",
+      status: "Live",
+      title: "NutriTrack-PRO",
+      tagline: "Multimodal GenAI Nutrition Tracker",
+      accent: "#10B981",
+      beforeQuote: "Meal logging was a chore. I made it a photo.",
+      afterQuote: "Photograph your food. Get your macros. No manual entry. No guessing.",
+      description: "Photograph food, get instant calorie and macro breakdowns powered by Google Gemini Vision API. 92% accuracy against labelled datasets. 80% reduction in manual logging time. Iterative prompt engineering drove the LLM output to production-grade quality — not just 'pretty good,' but actually reliable. Full-stack product: React dashboard, FastAPI backend, MongoDB.",
+      problem: "Traditional calorie tracking requires tedious manual search and ingredient weighing, causing over 80% of users to abandon tracking within days.",
+      solution: "Built an end-to-end multimodal GenAI web application combining Gemini Vision API with production-tuned prompt chains to deliver structured, high-accuracy macronutrient analysis from a single photograph.",
+      highlights: [
+        "92% macronutrient estimation accuracy benchmarked against labelled nutritional datasets",
+        "80% reduction in user logging overhead through zero-friction camera capture",
+        "Production-grade prompt engineering enforcing deterministic, error-resilient JSON schemas",
+        "Complete full-stack architecture: React frontend, FastAPI asynchronous backend, and MongoDB database"
+      ],
+      stack: ["React", "FastAPI", "MongoDB", "Gemini Vision API", "Prompt Engineering"],
+      githubUrl: "https://github.com/Kris-Zar/NutriTrack-PRO",
+      demoUrl: "https://nutritrack-frontend-behf.onrender.com"
+    },
+    {
+      id: "heart-disease-predictor",
+      num: "ISSUE 04",
+      tab: "Healthcare AI",
+      status: "Research & Prototype",
+      title: "Heart Disease Predictor",
+      tagline: "10-Year CHD Risk Classification",
+      accent: "#EF4444",
+      beforeQuote: "Numbers in a dataset. Lives on the other end.",
+      afterQuote: "4,000 patient records. 6 engineered features. One question: will this person develop heart disease?",
+      description: "A coronary heart disease risk classifier trained on the Framingham Heart Study. Logistic Regression with clean feature engineering, StandardScaler normalisation, and proper 70/30 train-test discipline. ~85% accuracy. No shortcuts. No data leakage. Real clinical data, treated with the care it deserves. Currently upgrading the pipeline with a fully leakage-safe version.",
+      problem: "Clinical risk prediction models often suffer from data leakage during normalization and lack transparent interpretability for physicians.",
+      solution: "Structured an interpretable Logistic Regression pipeline on 4,000 Framingham records with 6 domain-engineered clinical features and strict 70/30 train-test separation to safeguard against data leakage.",
+      highlights: [
+        "Trained on 4,000 real patient records from the landmark Framingham Heart Study",
+        "~85% classification accuracy with clinical feature selection and StandardScaler preprocessing",
+        "Strict prevention of data leakage across transformation and imputation steps",
+        "Transparent, interpretable odds ratios allowing medical practitioners to understand risk factors"
+      ],
+      stack: ["Python", "Logistic Regression", "Scikit-learn", "Pandas", "StandardScaler"],
+      githubUrl: "https://github.com/Kris-Zar/Heart-Disease-Prediction",
+      demoUrl: "https://github.com/Kris-Zar/Heart-Disease-Prediction"
     },
     {
       id: "trackdown",
-      title: "TrackDown",
-      tagline: "Pomodoro-Powered Productivity System",
-      category: "Systems & Productivity",
-      tab: "Systems",
-      accent: "#E65100", // Clockwork amber
-      beforeQuote: "Focus isn't a personality trait. It's a system.",
-      afterQuote: "I built mine, then made it yours.",
-      description: "An intentional focus operating system built around adaptive Pomodoro cycles, distraction blockers, and habit-loop feedback. Because distraction is a design problem, not a willpower problem.",
-      problem: "Traditional productivity tools either overwhelm with complex kanbans or treat time as rigid stopwatch countdowns without accounting for cognitive fatigue.",
-      solution: "Designed a clean, frictionless desktop and web companion that pairs timed deep-work sprints with ambient focus queues and honest session reflection.",
-      highlights: [
-        "Flow-state timer with non-intrusive sound cues",
-        "Adaptive break pacing calibrated to session density",
-        "Friction-free task queue that clears mental overhead"
-      ],
-      stack: ["TypeScript", "Electron / Web", "TailwindCSS", "State Engine"],
+      num: "ISSUE 05",
+      tab: "Productivity",
       status: "Active Daily Driver",
-      demoUrl: "#",
-      githubUrl: "#"
-    },
-    {
-      id: "emotion-detection",
-      title: "Emotion Detection",
-      tagline: "Empathetic Facial Expression Analysis",
-      category: "Human AI & Vision",
-      tab: "Human AI",
-      accent: "#5E35B1", // Deep soothing violet
-      beforeQuote: "A quiet sanity check.",
-      afterQuote: "For the moments when you don't know if someone is okay — including yourself.",
-      description: "The most human project. Not a gimmick. A genuine attempt at building an observant, empathetic machine vision assistant that quietly detects affective states and emotional fatigue.",
-      problem: "Mental exhaustion and emotional burnout often remain unnoticed until it's too late. Most digital tools ignore how the person behind the screen is actually holding up.",
-      solution: "Trained and benchmarked a lightweight facial landmark emotion classifier that runs on-device, offering gentle ambient check-ins without invasive cloud streaming.",
+      title: "TrackDown",
+      tagline: "Pomodoro Focus & Study Tracker",
+      accent: "#F59E0B",
+      beforeQuote: "Built it because I needed it.",
+      afterQuote: "Studying without a system was chaos. So I built the system.",
+      description: "A clean, distraction-free Pomodoro tracker with visual session progress and streak tracking. No logins. No accounts. No noise. Client-side only. Fast. Always available. Built in a weekend. Still in daily use.",
+      problem: "Modern timer applications are cluttered with subscription paywalls, intrusive tracking, forced logins, and notification bloat that disrupts deep focus.",
+      solution: "Engineered a zero-dependency, ultra-lightweight client-side focus cadence engine utilizing HTML5 Canvas for real-time visual progress arcs and local streak persistence.",
       highlights: [
-        "Edge-based on-device emotion classification with total privacy",
-        "Micro-expression tracking for stress and fatigue detection",
-        "Quiet, non-intrusive ambient reflection prompts"
+        "100% client-side with zero dependencies — built with Vanilla JavaScript, Canvas, and CSS",
+        "Instant launch with zero logins, zero network latency, and complete privacy",
+        "Visual circular progress rendering and persistent habit-streak counters",
+        "Personal daily driver shipped and running live on GitHub Pages"
       ],
-      stack: ["PyTorch", "OpenCV", "MediaPipe", "FastAPI", "Webcam Engine"],
-      status: "Research & Prototype",
-      demoUrl: "#",
-      githubUrl: "#"
-    },
-    {
-      id: "pipeline-sentinel",
-      title: "Pipeline Sentinel",
-      tagline: "Autonomous Data Watchdog & Self-Healing Agent",
-      category: "Automation & Systems",
-      tab: "Systems",
-      accent: "#D95338", // Factory oxide red / terracotta
-      beforeQuote: "Silent pipeline stalls at 3 AM were killing weekend peace.",
-      afterQuote: "Now it detects, heals, and reports before anyone wakes up.",
-      description: "An autonomous watchdog agent that monitors mission-critical data pipelines, detects statistical anomalies in streaming records, and executes idempotent self-healing rollbacks with plain-English incident summaries.",
-      problem: "Traditional alerting systems deluge engineers with noisy alerts while failing to provide root-cause diagnostics or safe automated recovery when schemas drift.",
-      solution: "Engineered a lightweight daemon that couples real-time data drift tracking with deterministic state rollback playbooks, cutting critical incident MTTR by 85%.",
-      highlights: [
-        "Sub-second drift and anomaly detection on streaming workloads",
-        "Deterministic recovery playbooks with automated zero-loss retry loops",
-        "Clear, human-readable triage incident reports piped to Slack and CLI"
-      ],
-      stack: ["Python", "FastAPI", "Docker", "PostgreSQL", "Redis", "Kafka"],
-      status: "Production Deployed",
-      demoUrl: "#",
-      githubUrl: "#"
-    },
-    {
-      id: "whisper-flow",
-      title: "WhisperFlow",
-      tagline: "100% On-Device Meeting & Speech Intelligence",
-      category: "Speech AI & Local Models",
-      tab: "AI & Vision",
-      accent: "#0284C7", // Ocean steel cyan
-      beforeQuote: "Cloud meeting tools upload your raw voice to unknown servers.",
-      afterQuote: "Zero telemetry. Everything runs on local silicon.",
-      description: "A private, zero-telemetry desktop voice assistant that performs offline speaker diarization, real-time transcription, and automated action-item synthesis using quantized local models.",
-      problem: "High-value architectural debates and proprietary ideas are routinely exposed to privacy vulnerabilities when sent to cloud-hosted transcription providers.",
-      solution: "Packaged quantized Whisper models and compact local LLMs into an ultra-low-latency desktop runtime with native hardware acceleration.",
-      highlights: [
-        "100% private, on-device transcription with zero network connectivity needed",
-        "Speaker diarization and automated task extraction in real-time",
-        "Optimized GPU quantization maintaining under 1.4GB unified memory footprint"
-      ],
-      stack: ["Python", "Whisper", "Ollama / Llama.cpp", "Electron", "SQLite"],
-      status: "Shipped & Open Source",
-      demoUrl: "#",
-      githubUrl: "#"
-    },
-    {
-      id: "first-principles-lab",
-      title: "Tactile Shader Lab",
-      tagline: "Interactive Physics & Eulerian Fluid Simulation",
-      category: "Creative Computing & WebGL",
-      tab: "Human AI",
-      accent: "#EAB308", // Radiant amber
-      beforeQuote: "Formulas in textbooks don't teach physical intuition.",
-      afterQuote: "Interactive tactile physics make complex algorithms feel alive.",
-      description: "A laboratory of lightweight WebGPU and WebGL2 interactive shaders exploring Eulerian fluid dynamics, spring-damper lattices, and responsive digital glass refraction.",
-      problem: "Technical concepts like navier-stokes or wave propagation remain dry and abstract without immediate tactile cause-and-effect experimentation.",
-      solution: "Crafted interactive algorithmic canvases tuned for real-time 60fps cursor manipulation, letting users directly experience and manipulate computational dynamics.",
-      highlights: [
-        "Real-time Eulerian grid fluid solver running purely on the GPU",
-        "Spring-mass damping system calibrated for organic tactile feedback",
-        "Zero heavyweight frameworks — built with vanilla WebGL and math primitives"
-      ],
-      stack: ["JavaScript", "WebGL2 / WebGPU", "GLSL", "Canvas API", "Math"],
-      status: "Interactive Lab",
-      demoUrl: "#",
-      githubUrl: "#"
+      stack: ["Vanilla JS", "HTML5 Canvas", "CSS3"],
+      githubUrl: "https://github.com/Kris-Zar/TrackDown",
+      demoUrl: "https://kris-zar.github.io/TrackDown/"
     }
   ],
 
   // Section 6: Philosophy
   philosophy: {
-    kicker: "The Balance",
-    headline: "I care about the line between powerful and approachable.",
-    principles: [
-      {
-        quote: "A system that needs a manual isn't smart — it's just complicated.",
-        detail: "Complexity is easy. Restraint is the actual discipline."
-      },
-      {
-        quote: "The real work is making something capable enough to handle the hard parts...",
-        detail: "...and simple enough that you trust it without hesitation."
-      }
-    ],
-    closing: "That's where I build."
+    kicker: "⚖️ THE PHILOSOPHY",
+    headline: "Intelligence should feel invisible.",
+    body: "A model that needs a manual isn't smart — it's just complicated. The real work is making something powerful enough to handle the hard parts, and simple enough that you trust it without thinking about it.\n\nThat's where I build. Not at the boundary of capability. At the boundary of capability and clarity.",
+    axisLeft: "CAPABILITY",
+    axisRight: "SIMPLICITY"
   },
 
-  // Section 7: Based in Kanpur (Human Anchor)
+  // Section 7: Based in Kanpur (The Human Anchor)
   kanpur: {
-    kicker: "Roots & Soul",
-    city: "Kanpur, UP",
+    kicker: "📍 THE HUMAN ANCHOR",
+    city: "Based in Kanpur, UP.",
     subtitle: "The Manchester of the East",
-    story: "Industrial by heritage, street-food by soul, and the Ganga flowing quietly through all of it.",
+    story: "The Manchester of the East — industrial by heritage, Biryani and Thandai by soul, and the Ganga flowing quietly through all of it.",
     atmosphere: [
-      "Kanpur is one of those cities that carries weight. Temples on every corner. Spirituality woven into the streets.",
-      "A place where the sacred and the everyday sit side by side without feeling like a contradiction.",
-      "It shapes how you think: direct, grounded, unhurried about the things that matter."
+      "It's a city that doesn't perform. It just works. Directly. Without pretense.",
+      "That's shaped how I build too: no unnecessary weight, no overengineering, just clear thinking applied to real problems.",
+      "Fast to start. Hard to stop. Kanpuriya by default."
     ],
-    personalNote: "When I'm not building, I'm probably eating something I shouldn't — or going deep into a rabbit hole that will definitely become a project."
+    closing: "Fast to start. Hard to stop. Kanpuriya by default."
   },
+
+  // Section 8: The Signal (Contact)
+  contact: {
+    kicker: "📡 THE SIGNAL",
+    headline: "Let's build something real.",
+    body: "Open to AI/ML engineering roles — internships, full-time, freelance. Remote or on-site. Pan-India.\n\nIf you're working on something that needs a machine to think, I'd like to hear about it. Over email, or over chai.",
+    email: "parth_saxena44@yahoo.com"
+  },
+
+  // Technical Skills Dossier
+  skills: {
+    "ML & AI": ["Scikit-learn", "TensorFlow", "Keras", "CNN", "RNN/LSTM", "Transformers", "GANs", "Autoencoders", "Reinforcement Learning", "Random Forest", "Logistic Regression", "SHAP", "MCC"],
+    "Data Science": ["Pandas", "NumPy", "Matplotlib", "Seaborn", "EDA", "Feature Engineering"],
+    "GenAI & LLMs": ["Gemini Vision API", "Prompt Engineering", "Hugging Face", "NLP"],
+    "Audio & Signal": ["Librosa", "Mel Spectrogram", "MFCCs", "Web Audio API"],
+    "Backend & Infra": ["FastAPI", "Uvicorn", "MongoDB", "MySQL", "Docker", "REST APIs"],
+    "Frontend": ["React", "HTML5", "CSS3", "Vanilla JS", "TailwindCSS", "Canvas API"],
+    "Languages": ["Python (primary)", "JavaScript", "Java", "C", "C++", "C#"],
+    "Tools": ["Git", "GitHub", "Jupyter", "VS Code"]
+  },
+
+  // Education Timeline
+  education: [
+    {
+      degree: "B.Tech — CS (AI & ML)",
+      institution: "Axis Institute of Technology, AKTU",
+      period: "2023–2027",
+      score: "CGPA: 7.1/10"
+    },
+    {
+      degree: "Class XII — CBSE",
+      institution: "Jai Narayan Vidya Mandir, Kanpur",
+      period: "2023",
+      score: "72%"
+    },
+    {
+      degree: "Class X — ICSE",
+      institution: "Sun Shine Public School, Kanpur",
+      period: "2021",
+      score: "81%"
+    }
+  ],
+
+  // Verified Certifications
+  certifications: [
+    {
+      title: "Complete ML & Data Science — RNNs, LSTMs, Transformers, GANs, RL",
+      issuer: "GFG × NationSkillup",
+      badge: "ML Expert"
+    },
+    {
+      title: "ML Essentials for Decision Makers + Art of the Possible",
+      issuer: "AWS (×2)",
+      badge: "Cloud AI"
+    },
+    {
+      title: "Intro to Generative AI · LLMs · Responsible AI",
+      issuer: "Google Cloud (×3)",
+      badge: "GenAI"
+    },
+    {
+      title: "HackerRank Gold Badge — Python & SQL",
+      issuer: "HackerRank",
+      badge: "Gold Badge"
+    }
+  ],
 
   // Bottom Navigation Chapters for the Scrubber Ruler
   chapters: [
     { id: "hero", label: "Hook", title: "First Principles" },
-    { id: "belief", label: "Belief", title: "Carving Paths" },
+    { id: "belief", label: "Stance", title: "The Stance" },
     { id: "craft", label: "What", title: "AI & Automation" },
     { id: "origin", label: "Origin", title: "~2 Years In" },
     { id: "works", label: "Works", title: "Selected Projects" },
-    { id: "philosophy", label: "Philosophy", title: "Approachability" },
-    { id: "kanpur", label: "Kanpur", title: "Roots & Ride" },
+    { id: "philosophy", label: "Philosophy", title: "Invisible Intelligence" },
+    { id: "kanpur", label: "Kanpur", title: "Roots & Soul" },
     { id: "contact", label: "Signal", title: "Get in Touch" }
   ]
 };
 
-// Expose globally for both browser script tag and modules
+// Expose globally for browser script tag and modular contexts
 if (typeof window !== "undefined") {
   window.PORTFOLIO_DATA = PORTFOLIO_DATA;
 }

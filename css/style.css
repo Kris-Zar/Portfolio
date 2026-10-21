@@ -737,16 +737,23 @@ html.lenis, html.lenis body {
   width: 100%;
 }
 
+.comic-strip-4panel {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  width: 100%;
+}
+
 .comic-panel {
   background: #FFF;
   border: var(--border-width) solid var(--ink);
   border-radius: 12px;
-  padding: 20px;
+  padding: 16px;
   box-shadow: var(--comic-shadow);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 220px;
+  min-height: 230px;
   position: relative;
   overflow: hidden;
 }
@@ -780,6 +787,69 @@ html.lenis, html.lenis body {
   font-weight: 700;
   margin-top: 6px;
   text-transform: uppercase;
+}
+
+.panel-detail {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 5px;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+/* Technical Dossier Modal Styles */
+.dossier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.dossier-card {
+  background: #FFF;
+  border: var(--border-width) solid var(--ink);
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 2.5px 2.5px 0px var(--ink);
+}
+
+.dossier-card h4 {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent-terracotta);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dossier-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.dossier-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--paper-warm);
+  color: var(--ink);
+  border: 1px solid rgba(24, 23, 28, 0.4);
+  border-radius: 4px;
+  padding: 2px 7px;
+}
+
+.edu-item, .cert-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1.5px dashed rgba(24, 23, 28, 0.15);
+}
+
+.edu-item:last-child, .cert-item:last-child {
+  border-bottom: none;
 }
 
 /* ==========================================================================
@@ -1446,8 +1516,8 @@ html.lenis, html.lenis body {
   .craft-layout {
     grid-template-columns: 1fr;
   }
-  .comic-strip-3panel {
-    grid-template-columns: 1fr;
+  .comic-strip-3panel, .comic-strip-4panel {
+    grid-template-columns: repeat(2, 1fr);
   }
   .project-card {
     flex: 0 0 min(82vw, 320px);
@@ -1455,5 +1525,11 @@ html.lenis, html.lenis body {
   }
   .ruler-marker-btn:nth-child(even) {
     display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .comic-strip-3panel, .comic-strip-4panel {
+    grid-template-columns: 1fr;
   }
 }

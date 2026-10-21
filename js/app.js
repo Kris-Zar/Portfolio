@@ -136,7 +136,7 @@
           <div class="project-cover-art" style="border-bottom: 3.5px solid ${p.accent}">
             <div class="cover-schematic-bg"></div>
             <div class="cover-content">
-              <div class="cover-badge">${p.tab === 'AI & Vision' ? '👁️ VISION MODEL' : p.tab === 'Systems' ? '⚡ AUTOMATION AGENT' : '🧠 HUMAN AI & SHADERS'}</div>
+              <div class="cover-badge">${p.tab === 'Fraud AI' ? '🛡️ FRAUD INTELLIGENCE' : p.tab === 'Human AI' ? '🧠 MULTIMODAL EMOTION' : p.tab === 'GenAI' ? '⚡ VISION LLM' : p.tab === 'Healthcare AI' ? '❤️ CLINICAL PREDICTOR' : '⏱️ FOCUS CADENCE'}</div>
               <div class="cover-lead-title">${p.title}</div>
               <div class="cover-lead-subtitle">${p.tagline}</div>
             </div>
@@ -237,9 +237,9 @@
         </ul>
       </div>
 
-      <div style="margin-top:20px; padding-top:16px; border-top:2px dashed rgba(24,23,28,0.2); display:flex; gap:12px;">
-        <button class="btn-comic solid" onclick="alert('Demo link available upon request.')">Live System Demo</button>
-        <button class="btn-comic" onclick="alert('Repository will open.')">View Code</button>
+      <div style="margin-top:22px; padding-top:16px; border-top:2px dashed rgba(24,23,28,0.2); display:flex; flex-wrap:wrap; gap:12px;">
+        ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" rel="noopener noreferrer" class="btn-comic solid">🚀 Launch Live App ↗</a>` : ''}
+        ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn-comic">📂 View Repository ↗</a>` : ''}
       </div>
     `;
 
@@ -255,6 +255,100 @@
     if (drawerPanel) drawerPanel.style.overflowY = "auto";
 
     // 3. Stop wheel / touch scroll events from bubbling up to Lenis
+    caseDrawer.addEventListener("wheel", onDrawerWheel, { passive: false });
+    caseDrawer.addEventListener("touchmove", onDrawerWheel, { passive: false });
+
+    caseDrawer.classList.add("open");
+    caseDrawer.setAttribute("aria-hidden", "false");
+    drawerContent.scrollTop = 0;
+    if (drawerPanel) drawerPanel.scrollTop = 0;
+  }
+
+  // 4b. Technical Dossier (Skills, Education, Certifications)
+  function openDossierModal() {
+    const skills = DATA.skills || {};
+    const edu = DATA.education || [];
+    const certs = DATA.certifications || [];
+
+    drawerContent.innerHTML = `
+      <div style="display:flex; align-items:center; gap:10px; margin-top:10px;">
+        <span class="project-tag" style="background:#0A6FC2; font-size:12px; padding:3px 10px;">ENGINEER DOSSIER</span>
+        <span style="font-family:var(--font-mono); font-size:12px; font-weight:700;">Parth Saxena · AI/ML Systems</span>
+      </div>
+      <h2 style="font-family:var(--font-display); font-size: clamp(28px, 3.5vw, 40px); font-weight:900; line-height:1.1; margin-top:8px;">
+        Technical Specs & Credentials
+      </h2>
+      <p style="font-size:15px; font-weight:600; color:var(--ink-soft);">
+        Deep-dive capabilities, academic trajectory, and certified skill proficiencies.
+      </p>
+
+      <!-- Technical Skills Grid -->
+      <div style="margin-top:16px;">
+        <div class="comic-kicker" style="color:var(--accent-terracotta);">✦ TECHNICAL ARSENAL</div>
+        <div class="dossier-grid">
+          ${Object.entries(skills).map(([category, items]) => `
+            <div class="dossier-card">
+              <h4>${category}</h4>
+              <div class="dossier-tags">
+                ${items.map(skill => `<span class="dossier-pill">${skill}</span>`).join("")}
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+
+      <!-- Education Timeline -->
+      <div class="comic-box" style="margin-top:20px; border-left: 5px solid var(--accent-gold);">
+        <div class="comic-kicker">🎓 ACADEMIC BACKGROUND</div>
+        <div>
+          ${edu.map(e => `
+            <div class="edu-item">
+              <div>
+                <strong style="font-family:var(--font-display); font-size:14.5px; color:var(--ink);">${e.degree}</strong>
+                <p style="font-size:13px; color:var(--ink-soft);">${e.institution}</p>
+              </div>
+              <div style="text-align:right;">
+                <span style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--accent-terracotta);">${e.period}</span>
+                <p style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--accent-teal);">${e.score}</p>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="comic-box" style="margin-top:16px; border-left: 5px solid var(--accent-teal);">
+        <div class="comic-kicker" style="color:var(--accent-teal);">🏆 VERIFIED CERTIFICATIONS</div>
+        <div>
+          ${certs.map(c => `
+            <div class="cert-item">
+              <div>
+                <strong style="font-size:14px; color:var(--ink);">${c.title}</strong>
+                <p style="font-size:12.5px; color:var(--ink-soft);">→ ${c.issuer}</p>
+              </div>
+              <span class="project-tag" style="background:var(--ink); font-size:10px;">${c.badge}</span>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div style="margin-top:22px; padding-top:16px; border-top:2px dashed rgba(24,23,28,0.2); display:flex; flex-wrap:wrap; gap:12px;">
+        <a href="mailto:${DATA.personal.email}" class="btn-comic solid">✉️ Get in Touch (Email)</a>
+        <a href="${(DATA.personal.socials && DATA.personal.socials[0]) ? DATA.personal.socials[0].url : 'https://github.com/Kris-Zar'}" target="_blank" rel="noopener noreferrer" class="btn-comic">📂 GitHub Profile ↗</a>
+      </div>
+    `;
+
+    // 1. Pause Lenis smooth scroll so background does not scrub
+    if (lenis && typeof lenis.stop === "function") {
+      lenis.stop();
+    } else if (window.__lenis && typeof window.__lenis.stop === "function") {
+      window.__lenis.stop();
+    }
+
+    drawerContent.style.overflowY = "auto";
+    if (drawerPanel) drawerPanel.style.overflowY = "auto";
+
     caseDrawer.addEventListener("wheel", onDrawerWheel, { passive: false });
     caseDrawer.addEventListener("touchmove", onDrawerWheel, { passive: false });
 
@@ -607,7 +701,7 @@
 
   // 11. Copy Email Interaction
   copyMailBtn.addEventListener("click", () => {
-    const email = DATA.personal.email || "builder@firstprinciples.dev";
+    const email = DATA.personal.email || "parth_saxena44@yahoo.com";
     navigator.clipboard.writeText(email).then(() => {
       const orig = copyMailBtn.innerHTML;
       copyMailBtn.innerHTML = `<span>${email}</span> <span style="color:var(--accent-teal);">✓ Copied!</span>`;
@@ -616,6 +710,12 @@
       window.location.href = `mailto:${email}`;
     });
   });
+
+  // 11b. Technical Dossier Modal Triggers
+  const dossierBtn = document.getElementById("dossierBtn");
+  const navDossierBtn = document.getElementById("navDossierBtn");
+  if (dossierBtn) dossierBtn.addEventListener("click", openDossierModal);
+  if (navDossierBtn) navDossierBtn.addEventListener("click", openDossierModal);
 
   // 12. Animation Loop (Dust specks + Velocity tilt)
   function renderLoop() {

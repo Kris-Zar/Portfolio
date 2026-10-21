@@ -34,7 +34,7 @@ const PORTFOLIO_DATA = {
     headline: "I don't train models to get metrics. I train them to solve things.",
     leadPrefix: "I don't train models to get metrics.",
     highlight: "I train them to solve things.",
-    body: "I don't stop at accuracy scores. A model that hits 92% in a notebook and breaks in production isn't a win — it's a warning sign.\n\nEvery project I build goes all the way. Data pipeline. Training. Evaluation. Deployment. Real users. That's the standard I hold myself to, even as a student.",
+    body: "A model that hits 92% in a notebook and breaks in production isn't a win — it's a warning sign.\n\nEvery system I build goes all the way: pipeline, training, evaluation, deployment, real users.",
     punchline: "If it doesn't ship, it doesn't count."
   },
 
@@ -230,11 +230,11 @@ const PORTFOLIO_DATA = {
       tab: "Productivity",
       status: "Active Daily Driver",
       title: "TrackDown",
-      tagline: "Pomodoro Focus & Study Tracker",
+      tagline: "Pomodoro Focus & Study Cadence Engine",
       accent: "#F59E0B",
-      beforeQuote: "Built it because I needed it.",
-      afterQuote: "Studying without a system was chaos. So I built the system.",
-      description: "A clean, distraction-free Pomodoro tracker with visual session progress and streak tracking. No logins. No accounts. No noise. Client-side only. Fast. Always available. Built in a weekend. Still in daily use.",
+      beforeQuote: "Studying without a system was chaos.",
+      afterQuote: "Zero logins. Zero noise. Shipped in a weekend — personal daily driver ever since.",
+      description: "An ultra-clean, distraction-free study cadence engine engineered with HTML5 Canvas visual progress arcs, local streak tracking, and customizable focus/break intervals. Built purely client-side with zero dependencies, zero tracking, and instant load times. Shipped to GitHub Pages and used every single day.",
       problem: "Modern timer applications are cluttered with subscription paywalls, intrusive tracking, forced logins, and notification bloat that disrupts deep focus.",
       solution: "Engineered a zero-dependency, ultra-lightweight client-side focus cadence engine utilizing HTML5 Canvas for real-time visual progress arcs and local streak persistence.",
       highlights: [
@@ -243,7 +243,7 @@ const PORTFOLIO_DATA = {
         "Visual circular progress rendering and persistent habit-streak counters",
         "Personal daily driver shipped and running live on GitHub Pages"
       ],
-      stack: ["Vanilla JS", "HTML5 Canvas", "CSS3"],
+      stack: ["Vanilla JS", "HTML5 Canvas", "CSS3", "Local Storage", "Web Audio API", "GitHub Pages"],
       githubUrl: "https://github.com/Kris-Zar/TrackDown",
       demoUrl: "https://kris-zar.github.io/TrackDown/"
     }

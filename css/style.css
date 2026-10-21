@@ -592,24 +592,41 @@ html.lenis, html.lenis body {
    SCENE 3: THE BELIEF STATEMENT (Carving Paths)
    ========================================================================== */
 #scene-belief {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--pad);
   text-align: center;
 }
 
 .belief-wrap {
-  max-width: 860px;
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(16px, 2.5vw, 28px);
+  justify-content: center;
+}
+
+#scene-belief .comic-box {
+  padding: clamp(20px, 3vh, 32px) clamp(22px, 3vw, 36px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 2vh, 22px);
+  text-align: center;
+  max-height: calc(100vh - 150px);
+  box-sizing: border-box;
 }
 
 .belief-lead {
   font-family: var(--font-display);
-  font-size: clamp(34px, 5.2vw, 76px);
+  font-size: clamp(28px, 4vw, 56px);
   font-weight: 900;
-  line-height: 1.05;
+  line-height: 1.1;
   letter-spacing: -0.025em;
   color: #FAF7F0;
+  margin: 0;
 }
 
 .carve-highlight {
@@ -620,10 +637,10 @@ html.lenis, html.lenis body {
 
 .carve-highlight .chisel-strike {
   position: absolute;
-  left: -5%;
-  bottom: 12%;
-  width: 110%;
-  height: 6px;
+  left: -4%;
+  bottom: 8%;
+  width: 108%;
+  height: 5px;
   background: var(--accent-terracotta);
   border-radius: 4px;
   transform-origin: left center;
@@ -631,20 +648,25 @@ html.lenis, html.lenis body {
 }
 
 .belief-body {
-  font-size: clamp(18px, 1.8vw, 26px);
-  line-height: 1.45;
+  font-size: clamp(15px, 1.4vw, 20px);
+  line-height: 1.55;
   color: #D2CFDF;
-  max-width: 52ch;
+  max-width: 54ch;
   text-wrap: pretty;
+  margin: 0;
 }
 
 .belief-punchline {
   font-family: var(--font-display);
-  font-size: clamp(20px, 2.2vw, 32px);
+  font-size: clamp(17px, 1.8vw, 26px);
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   color: var(--accent-gold);
+  border-top: 1.5px dashed rgba(250, 247, 240, 0.25);
+  padding-top: clamp(10px, 1.5vh, 16px);
+  margin: 0;
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -1013,22 +1035,34 @@ html.lenis, html.lenis body {
 /* Individual Project Card in the Track */
 .project-card {
   flex: 0 0 auto;
-  width: clamp(360px, 34vw, 480px);
+  width: clamp(350px, 32vw, 440px);
+  height: clamp(500px, 68vh, 580px);
   max-height: calc(100vh - 130px);
   background: #FFFFFF;
   border: var(--border-width) solid var(--ink);
   border-radius: 16px;
-  padding: 24px;
+  padding: 22px;
   box-shadow: var(--comic-shadow);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 14px;
+  gap: 12px;
   cursor: pointer;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+}
+
+.project-card > div:first-child {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.project-card-bottom {
+  margin-top: auto;
+  flex-shrink: 0;
 }
 
 .project-card:hover {
@@ -1424,13 +1458,13 @@ html.lenis, html.lenis body {
 .ruler-markers {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   pointer-events: none;
 }
 
 .ruler-marker-btn {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
@@ -1443,12 +1477,46 @@ html.lenis, html.lenis body {
   cursor: pointer;
   pointer-events: auto;
   box-shadow: 1.5px 1.5px 0px rgba(0,0,0,0.8);
-  transition: transform 0.15s ease, background 0.15s ease;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+
+.ruler-marker-btn:first-child {
+  transform: translateY(-50%);
+}
+
+.ruler-marker-btn:last-child {
+  transform: translate(-100%, -50%);
 }
 
 .ruler-marker-btn:hover {
-  transform: translateY(-2px);
+  transform: translate(-50%, calc(-50% - 2px));
   background: var(--accent-gold);
+}
+
+.ruler-marker-btn:first-child:hover {
+  transform: translateY(calc(-50% - 2px));
+}
+
+.ruler-marker-btn:last-child:hover {
+  transform: translate(-100%, calc(-50% - 2px));
+}
+
+.ruler-marker-btn.active {
+  background: var(--accent-gold);
+  color: var(--ink);
+  border-color: var(--ink);
+  font-weight: 800;
+  transform: translate(-50%, calc(-50% - 2px));
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.9);
+}
+
+.ruler-marker-btn:first-child.active {
+  transform: translateY(calc(-50% - 2px));
+}
+
+.ruler-marker-btn:last-child.active {
+  transform: translate(-100%, calc(-50% - 2px));
 }
 
 /* ==========================================================================

@@ -59,14 +59,27 @@
       socialsBar.appendChild(a);
     });
 
-    // Bottom Navigation Markers
+    // Bottom Navigation Markers with Proportional Content Spacing
+    const CHAPTER_POSITIONS = {
+      hero: 0,
+      belief: 10.5,
+      craft: 19.5,
+      origin: 28.5,
+      works: 35.0,
+      philosophy: 77.0,
+      kanpur: 86.5,
+      contact: 100
+    };
+
     rulerMarkers.innerHTML = "";
     (DATA.chapters || []).forEach(chap => {
       const btn = document.createElement("button");
-      btn.className = "ruler-marker-btn";
+      btn.className = "ruler-marker-btn" + (chap.id === "hero" ? " active" : "");
       btn.dataset.jump = chap.id;
       btn.textContent = chap.label;
       btn.title = chap.title;
+      const pos = CHAPTER_POSITIONS[chap.id] ?? 0;
+      btn.style.left = pos + "%";
       rulerMarkers.appendChild(btn);
     });
 
@@ -168,22 +181,28 @@
     }
   }
 
-  function jumpToScene(key, offset = 0.2) {
-    if (!window.masterTL) return;
-    const totalDuration = window.masterTL.duration();
-    const labelTime = window.masterTL.labels[key] || 0;
-    const targetProgress = Math.min(0.999, Math.max(0, (labelTime + offset) / totalDuration));
+  const SCENE_TARGETS = {
+    hero: 0.0,
+    belief: 0.105,
+    craft: 0.195,
+    origin: 0.285,
+    works: 0.350,
+    philosophy: 0.770,
+    kanpur: 0.865,
+    contact: 0.955
+  };
+
+  function jumpToScene(key) {
+    const targetProgress = SCENE_TARGETS[key] !== undefined ? SCENE_TARGETS[key] : 0;
     jumpToProgress(targetProgress);
   }
 
   function jumpToProjectCard(cardIndex, totalCards) {
-    if (!window.masterTL) return;
-    const totalDuration = window.masterTL.duration();
-    const startScrub = 5.9;
-    const scrubDuration = 9.5;
+    // Works track scrub runs from progress 0.354 to 0.708 (span: 0.354)
+    const startScrubProgress = 0.354;
+    const scrubProgressSpan = 0.354;
     const frac = totalCards > 1 ? cardIndex / (totalCards - 1) : 0;
-    const timelineTime = startScrub + frac * scrubDuration;
-    const targetProgress = Math.min(0.999, Math.max(0, timelineTime / totalDuration));
+    const targetProgress = Math.min(0.72, startScrubProgress + frac * scrubProgressSpan);
     jumpToProgress(targetProgress);
   }
 
@@ -490,72 +509,86 @@
           if (rulerHead) {
             rulerHead.style.left = (self.progress * 100) + "%";
           }
+
+          // Dynamically toggle active chapter button on ruler
+          const p = self.progress;
+          const activeId = 
+            p < 0.062 ? "hero" :
+            p < 0.150 ? "belief" :
+            p < 0.242 ? "craft" :
+            p < 0.333 ? "origin" :
+            p < 0.729 ? "works" :
+            p < 0.821 ? "philosophy" :
+            p < 0.917 ? "kanpur" : "contact";
+
+          document.querySelectorAll(".ruler-marker-btn").forEach(btn => {
+            btn.classList.toggle("active", btn.dataset.jump === activeId);
+          });
         }
       }
     });
 
     const S = masterTL;
 
-    // SCENE 0 -> SCENE 1: Dive through laptop terminal screen into the belief
+    // SCENE 0 -> SCENE 1: Dive through laptop terminal screen into the belief (0.0s to 1.5s)
     S.addLabel("hero", 0)
-     .to("#scrollHint", { autoAlpha: 0, duration: 0.15 }, 0)
-     .to("#heroTextWrap", { y: -50, autoAlpha: 0, duration: 0.35 }, 0)
+     .to("#scrollHint", { autoAlpha: 0, duration: 0.2 }, 0)
+     .to("#heroTextWrap", { y: -50, autoAlpha: 0, duration: 0.4 }, 0)
      // Zoom desk SVG 24x specifically into the laptop screen center (x=550, y=182)
-     .to("#deskContainer", { scale: 24, transformOrigin: "78.6% 43.3%", duration: 0.9, ease: "power2.in" }, 0)
-     .to("#deskContainer", { autoAlpha: 0, duration: 0.15 }, 0.75)
+     .to("#deskContainer", { scale: 24, transformOrigin: "78.6% 43.3%", duration: 1.1, ease: "power2.in" }, 0)
+     .to("#deskContainer", { autoAlpha: 0, duration: 0.2 }, 0.9)
      // Concentric tunnel ring expansion originating from laptop screen
      .fromTo("#tunnelStage", 
        { autoAlpha: 0, scale: 0.4, transformOrigin: "78.6% 43.3%" }, 
-       { autoAlpha: 1, scale: 2.5, transformOrigin: "78.6% 43.3%", duration: 0.6 }, 0.3)
-     .to("#tunnelStage", { autoAlpha: 0, scale: 8, duration: 0.35 }, 0.8)
-     .to(stage, { "--stage-bg": "#1A2634", duration: 0.6 }, 0.4);
+       { autoAlpha: 1, scale: 2.5, transformOrigin: "78.6% 43.3%", duration: 0.7 }, 0.4)
+     .to("#tunnelStage", { autoAlpha: 0, scale: 8, duration: 0.4 }, 1.0)
+     .to(stage, { "--stage-bg": "#1A2634", duration: 0.7 }, 0.5);
 
-    // SCENE 2: The Belief ("I carve my own")
-    S.addLabel("belief", 1.0)
-     .set("#scene-hero", { autoAlpha: 0 }, 0.95)
-     .set("#scene-belief", { autoAlpha: 1, pointerEvents: "auto" }, 1.0)
+    // SCENE 2: The Stance (1.5s to 3.6s) - Active center: ~2.5s (10.4%)
+    S.addLabel("belief", 1.5)
+     .set("#scene-hero", { autoAlpha: 0 }, 1.45)
+     .set("#scene-belief", { autoAlpha: 1, pointerEvents: "auto" }, 1.5)
      .fromTo("#scene-belief .comic-box", 
-       { y: 50, scale: 0.92, autoAlpha: 0 }, 
-       { y: 0, scale: 1, autoAlpha: 1, duration: 0.5, ease: "power2.out" }, 1.05)
-     .fromTo("#chiselStrike", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power3.inOut" }, 1.3)
-     .to("#scene-belief .comic-box", { y: -35, autoAlpha: 0, duration: 0.35 }, 1.95)
-     .to(stage, { "--stage-bg": "#2E4057", duration: 0.5 }, 1.9)
-     .set("#scene-belief", { autoAlpha: 0, pointerEvents: "none" }, 2.3);
+       { y: 40, scale: 0.94, autoAlpha: 0 }, 
+       { y: 0, scale: 1, autoAlpha: 1, duration: 0.5, ease: "power2.out" }, 1.55)
+     .fromTo("#chiselStrike", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power3.inOut" }, 1.85)
+     .to("#scene-belief .comic-box", { y: -30, autoAlpha: 0, duration: 0.4 }, 3.2)
+     .to(stage, { "--stage-bg": "#2E4057", duration: 0.5 }, 3.1)
+     .set("#scene-belief", { autoAlpha: 0, pointerEvents: "none" }, 3.6);
 
-    // SCENE 3: What I Actually Do (Pipeline & Craft)
-    S.addLabel("craft", 2.3)
-     .set("#scene-craft", { autoAlpha: 1, pointerEvents: "auto" }, 2.25)
-     .fromTo("#scene-craft .craft-left", { x: -50, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.5 }, 2.3)
+    // SCENE 3: What I Actually Do / The Craft (3.6s to 5.8s) - Active center: ~4.7s (19.6%)
+    S.addLabel("craft", 3.6)
+     .set("#scene-craft", { autoAlpha: 1, pointerEvents: "auto" }, 3.55)
+     .fromTo("#scene-craft .craft-left", { x: -45, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.5 }, 3.65)
      .fromTo("#scene-craft .pipeline-node", 
-       { x: 40, autoAlpha: 0 }, 
-       { x: 0, autoAlpha: 1, stagger: 0.12, duration: 0.4, ease: "back.out(1.4)" }, 2.4)
-     .to("#scene-craft", { y: -25, autoAlpha: 0, duration: 0.35 }, 3.3)
-     .to(stage, { "--stage-bg": "#3A2E39", duration: 0.5 }, 3.25)
-     .set("#scene-craft", { autoAlpha: 0, pointerEvents: "none" }, 3.65);
+       { x: 35, autoAlpha: 0 }, 
+       { x: 0, autoAlpha: 1, stagger: 0.14, duration: 0.45, ease: "back.out(1.4)" }, 3.8)
+     .to("#scene-craft", { y: -25, autoAlpha: 0, duration: 0.4 }, 5.4)
+     .to(stage, { "--stage-bg": "#3A2E39", duration: 0.5 }, 5.3)
+     .set("#scene-craft", { autoAlpha: 0, pointerEvents: "none" }, 5.8);
 
-    // SCENE 4: The Origin (~2 Years In / 3 Panels)
-    S.addLabel("origin", 3.7)
-     .set("#scene-origin", { autoAlpha: 1, pointerEvents: "auto" }, 3.65)
-     .fromTo("#scene-origin .comic-box", { y: 35, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.4 }, 3.7)
+    // SCENE 4: The Origin (5.8s to 8.0s) - Active center: ~6.9s (28.7%)
+    S.addLabel("origin", 5.8)
+     .set("#scene-origin", { autoAlpha: 1, pointerEvents: "auto" }, 5.75)
+     .fromTo("#scene-origin .comic-box", { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.45 }, 5.85)
      .fromTo("#scene-origin .comic-panel", 
-       { y: 60, rotate: i => [-2, 0, 2][i % 3], autoAlpha: 0 }, 
-       { y: 0, rotate: 0, autoAlpha: 1, stagger: 0.12, duration: 0.5, ease: "power3.out" }, 3.85)
-     .to("#scene-origin", { scale: 0.95, autoAlpha: 0, duration: 0.4 }, 4.7)
-     .to(stage, { "--stage-bg": "#233142", duration: 0.6 }, 4.65)
-     .set("#scene-origin", { autoAlpha: 0, pointerEvents: "none" }, 5.1);
+       { y: 50, rotate: i => [-2, 0, 2][i % 3], autoAlpha: 0 }, 
+       { y: 0, rotate: 0, autoAlpha: 1, stagger: 0.12, duration: 0.5, ease: "power3.out" }, 6.0)
+     .to("#scene-origin", { scale: 0.95, autoAlpha: 0, duration: 0.4 }, 7.6)
+     .to(stage, { "--stage-bg": "#233142", duration: 0.5 }, 7.5)
+     .set("#scene-origin", { autoAlpha: 0, pointerEvents: "none" }, 8.0);
 
-    // SCENE 5: The Works (Nesil Noble Scroll-Scrubbed Horizontal Film Strip)
-    // Starts with clean rest buffer at x:0 so work-head and Issue 01 are immediately visible
-    S.addLabel("works", 5.15)
+    // SCENE 5: Selected Work (8.0s to 17.5s) - Active span: 33.3% to 72.9%
+    S.addLabel("works", 8.0)
      .set("#track", { x: 0 }, 0)
-     .set("#scene-works", { autoAlpha: 1, pointerEvents: "auto" }, 5.1)
+     .set("#scene-works", { autoAlpha: 1, pointerEvents: "auto" }, 7.95)
      .fromTo("#scene-works .work-head", 
-       { y: 40, autoAlpha: 0 }, 
-       { y: 0, autoAlpha: 1, duration: 0.45, ease: "power2.out" }, 5.15)
+       { y: 35, autoAlpha: 0 }, 
+       { y: 0, autoAlpha: 1, duration: 0.45, ease: "power2.out" }, 8.05)
      .fromTo("#projectsGrid .project-card", 
-       { y: 50, autoAlpha: 0 }, 
-       { y: 0, autoAlpha: 1, duration: 0.5, stagger: 0.08, ease: "power2.out" }, 5.25)
-     // Horizontal film strip track scrub: smooth, generous scroll across all 6 cards
+       { y: 45, autoAlpha: 0 }, 
+       { y: 0, autoAlpha: 1, duration: 0.5, stagger: 0.08, ease: "power2.out" }, 8.15)
+     // Horizontal film strip track scrub: smooth scroll across all 6 cards
      .fromTo("#track", { x: 0 }, {
        x: () => {
          const track = document.getElementById("track");
@@ -564,43 +597,43 @@
          const totalScroll = track.scrollWidth - stageEl.clientWidth + 80;
          return -Math.max(0, totalScroll);
        },
-       duration: 9.5,
+       duration: 8.5,
        ease: "none",
        immediateRender: false
-     }, 5.9)
+     }, 8.5)
      // Graceful exit after full track has finished scrubbing
-     .to("#scene-works", { yPercent: -12, autoAlpha: 0, duration: 0.5, ease: "power2.in" }, 15.8)
-     .to(stage, { "--stage-bg": "#263859", duration: 0.6 }, 15.7)
-     .set("#scene-works", { autoAlpha: 0, pointerEvents: "none" }, 16.3);
+     .to("#scene-works", { yPercent: -10, autoAlpha: 0, duration: 0.5, ease: "power2.in" }, 17.0)
+     .to(stage, { "--stage-bg": "#263859", duration: 0.5 }, 16.9)
+     .set("#scene-works", { autoAlpha: 0, pointerEvents: "none" }, 17.5);
 
-    // SCENE 6: The Philosophy (Powerful vs Approachable)
-    S.addLabel("philosophy", 16.4)
-     .set("#scene-philosophy", { autoAlpha: 1, pointerEvents: "auto" }, 16.35)
-     .fromTo("#scene-philosophy .comic-box", { y: 35, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.45 }, 16.4)
-     .fromTo(".balance-scale-svg", { scale: 0.8, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.5, ease: "back.out(1.5)" }, 16.55)
-     .to("#scene-philosophy", { y: -25, autoAlpha: 0, duration: 0.4 }, 17.5)
-     .to(stage, { "--stage-bg": "#FAF7F0", duration: 0.6 }, 17.4)
-     .set("#scene-philosophy", { autoAlpha: 0, pointerEvents: "none" }, 17.9);
+    // SCENE 6: The Philosophy (17.5s to 19.7s) - Active center: ~18.6s (77.5%)
+    S.addLabel("philosophy", 17.5)
+     .set("#scene-philosophy", { autoAlpha: 1, pointerEvents: "auto" }, 17.45)
+     .fromTo("#scene-philosophy .comic-box", { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.45 }, 17.55)
+     .fromTo(".balance-scale-svg", { scale: 0.85, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.5, ease: "back.out(1.5)" }, 17.7)
+     .to("#scene-philosophy", { y: -25, autoAlpha: 0, duration: 0.4 }, 19.3)
+     .to(stage, { "--stage-bg": "#FAF7F0", duration: 0.5 }, 19.2)
+     .set("#scene-philosophy", { autoAlpha: 0, pointerEvents: "none" }, 19.7);
 
-    // SCENE 7: Based in Kanpur & The Ride
-    S.addLabel("kanpur", 18.0)
-     .set("#scene-kanpur", { autoAlpha: 1, pointerEvents: "auto" }, 17.95)
-     .fromTo("#scene-kanpur .kanpur-header", { x: -35, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.5 }, 18.0)
+    // SCENE 7: Based in Kanpur (19.7s to 22.0s) - Active center: ~20.8s (86.7%)
+    S.addLabel("kanpur", 19.7)
+     .set("#scene-kanpur", { autoAlpha: 1, pointerEvents: "auto" }, 19.65)
+     .fromTo("#scene-kanpur .kanpur-header", { x: -30, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.45 }, 19.75)
      // Drive the Kanpur Vikram auto across the road
-     .fromTo("#kanpurAuto", { left: "-220px" }, { left: "115%", duration: 2.0, ease: "power1.inOut" }, 18.2)
+     .fromTo("#kanpurAuto", { left: "-220px" }, { left: "115%", duration: 1.8, ease: "power1.inOut" }, 19.95)
      // Wheel rotations with precise SVG axle origins
-     .fromTo("#autoWheelFront", { rotation: 0, svgOrigin: "180 120" }, { rotation: 1440, svgOrigin: "180 120", duration: 2.0 }, 18.2)
-     .fromTo("#autoWheelRear", { rotation: 0, svgOrigin: "65 120" }, { rotation: 1440, svgOrigin: "65 120", duration: 2.0 }, 18.2)
-     .to("#scene-kanpur", { autoAlpha: 0, duration: 0.35 }, 20.3)
-     .to(stage, { "--stage-bg": "#1E293B", duration: 0.6 }, 20.2)
-     .set("#scene-kanpur", { autoAlpha: 0, pointerEvents: "none" }, 20.7);
+     .fromTo("#autoWheelFront", { rotation: 0, svgOrigin: "180 120" }, { rotation: 1440, svgOrigin: "180 120", duration: 1.8 }, 19.95)
+     .fromTo("#autoWheelRear", { rotation: 0, svgOrigin: "65 120" }, { rotation: 1440, svgOrigin: "65 120", duration: 1.8 }, 19.95)
+     .to("#scene-kanpur", { autoAlpha: 0, duration: 0.35 }, 21.75)
+     .to(stage, { "--stage-bg": "#1E293B", duration: 0.5 }, 21.65)
+     .set("#scene-kanpur", { autoAlpha: 0, pointerEvents: "none" }, 22.0);
 
-    // SCENE 8: The Signal / Handover & Contact
-    S.addLabel("contact", 20.8)
-     .set("#scene-contact", { autoAlpha: 1, pointerEvents: "auto" }, 20.75)
+    // SCENE 8: The Signal / Handover & Contact (22.0s to 24.0s) - Active center: ~23.0s (95.8%)
+    S.addLabel("contact", 22.0)
+     .set("#scene-contact", { autoAlpha: 1, pointerEvents: "auto" }, 21.95)
      .fromTo("#scene-contact .comic-box", 
-       { scale: 0.88, autoAlpha: 0 }, 
-       { scale: 1, autoAlpha: 1, duration: 0.5, ease: "back.out(1.5)" }, 20.8)
+       { scale: 0.9, autoAlpha: 0 }, 
+       { scale: 1, autoAlpha: 1, duration: 0.5, ease: "back.out(1.5)" }, 22.05)
      // Reverse zoom cursor handover animation
      .to(comicCursor, {
        opacity: 1,
@@ -616,31 +649,20 @@
        },
        duration: 0.7,
        ease: "power3.inOut"
-     }, 20.95)
+     }, 22.25)
      .add(() => {
        cursorPill.textContent = "Your turn";
        cursorPill.style.background = "#D95338";
-     }, 21.4);
+     }, 22.7);
 
     // Expose masterTL for card jumping
     window.masterTL = masterTL;
 
     // Ruler marker button jumps
-    const jumpOffsets = {
-      hero: 0,
-      belief: 0.25,
-      craft: 0.25,
-      origin: 0.25,
-      works: 0.15,
-      philosophy: 0.25,
-      kanpur: 0.25,
-      contact: 0.2
-    };
-
     document.querySelectorAll("[data-jump]").forEach(btn => {
       btn.addEventListener("click", () => {
         const key = btn.dataset.jump;
-        jumpToScene(key, jumpOffsets[key] || 0);
+        jumpToScene(key);
       });
     });
   }

@@ -99,13 +99,13 @@ const PORTFOLIO_DATA = {
     ]
   },
 
-  // Section 5: Selected Work (5 Project Cards)
+  // Section 5: Selected Work (6 Project Cards)
   projectsMeta: {
     kicker: "📁 SELECTED WORK",
     headline: "Selected Projects.",
     subline: "Things I've engineered and shipped.",
-    shippedCount: "05 Projects",
-    focusAreas: "Vision AI · NLP · Fraud · GenAI"
+    shippedCount: "06 Projects",
+    focusAreas: "Vision AI · RecSys · NLP · Fraud · GenAI"
   },
 
   projects: [
@@ -179,8 +179,31 @@ const PORTFOLIO_DATA = {
       demoUrl: "https://nutritrack-frontend-behf.onrender.com"
     },
     {
-      id: "heart-disease-predictor",
+      id: "movierec",
       num: "ISSUE 04",
+      tab: "RecSys",
+      status: "Interactive ML App",
+      title: "MovieRec",
+      tagline: "Collaborative Filtering & TMDB Hybrid Recommender",
+      accent: "#3B82F6",
+      beforeQuote: "People don't want 800,000 choices. They want the 5 that matter.",
+      afterQuote: "Item-item collaborative filtering meets real-time TMDB metadata. Finding cinematic resonance beyond keyword tags.",
+      description: "An ML-powered movie recommendation engine built on item-item collaborative filtering and cosine similarity across user-item interaction matrices. Blends offline matrix factorization embeddings with live TMDB API metadata for real-time recommendations, deep similarity retrieval, and dynamic genre filtering inside a custom Streamlit dashboard.",
+      problem: "Content discovery in entertainment platforms suffers from cold-start bottlenecks, sparse ratings data, and superficial keyword matching that misses thematic and directorial nuances across film catalogs.",
+      solution: "Engineered an item-item collaborative filtering matrix using Scikit-learn and SciPy, generating precomputed cosine similarity mappings for fast lookups. Built a hybrid enrichment layer querying TMDB's 800,000+ film catalog for live trailers, posters, and multi-favorite preference scoring in an interactive Streamlit application.",
+      highlights: [
+        "Item-Item collaborative filtering matrix precomputed with cosine similarity over user-item rating matrices",
+        "Hybrid recommendation pipeline integrating offline matrix embeddings with TMDB's live 800,000+ title catalog",
+        "Multi-film preference aggregation allowing users to blend multiple favorites into tailored suggestion sets",
+        "Interactive dark-mode Streamlit dashboard with instant search, genre filtering, and YouTube trailer embeds"
+      ],
+      stack: ["Python", "Streamlit", "Scikit-learn", "SciPy", "Collaborative Filtering", "Pandas", "Cosine Similarity", "TMDB API"],
+      githubUrl: "https://github.com/Kris-Zar/Movie-Recommendation-App",
+      demoUrl: "https://github.com/Kris-Zar/Movie-Recommendation-App"
+    },
+    {
+      id: "heart-disease-predictor",
+      num: "ISSUE 05",
       tab: "Healthcare AI",
       status: "Research & Prototype",
       title: "Heart Disease Predictor",
@@ -203,7 +226,7 @@ const PORTFOLIO_DATA = {
     },
     {
       id: "trackdown",
-      num: "ISSUE 05",
+      num: "ISSUE 06",
       tab: "Productivity",
       status: "Active Daily Driver",
       title: "TrackDown",
@@ -259,12 +282,12 @@ const PORTFOLIO_DATA = {
 
   // Technical Skills Dossier
   skills: {
-    "ML & AI": ["Scikit-learn", "TensorFlow", "Keras", "CNN", "RNN/LSTM", "Transformers", "GANs", "Autoencoders", "Reinforcement Learning", "Random Forest", "Logistic Regression", "SHAP", "MCC"],
+    "ML & AI": ["Scikit-learn", "TensorFlow", "Keras", "CNN", "RNN/LSTM", "Transformers", "GANs", "Autoencoders", "Reinforcement Learning", "Random Forest", "Logistic Regression", "SHAP", "MCC", "Collaborative Filtering", "Cosine Similarity", "SciPy"],
     "Data Science": ["Pandas", "NumPy", "Matplotlib", "Seaborn", "EDA", "Feature Engineering"],
     "GenAI & LLMs": ["Gemini Vision API", "Prompt Engineering", "Hugging Face", "NLP"],
     "Audio & Signal": ["Librosa", "Mel Spectrogram", "MFCCs", "Web Audio API"],
-    "Backend & Infra": ["FastAPI", "Uvicorn", "MongoDB", "MySQL", "Docker", "REST APIs"],
-    "Frontend": ["React", "HTML5", "CSS3", "Vanilla JS", "TailwindCSS", "Canvas API"],
+    "Backend & Infra": ["FastAPI", "Uvicorn", "MongoDB", "MySQL", "Docker", "REST APIs", "TMDB API"],
+    "Frontend": ["React", "HTML5", "CSS3", "Vanilla JS", "TailwindCSS", "Canvas API", "Streamlit"],
     "Languages": ["Python (primary)", "JavaScript", "Java", "C", "C++", "C#"],
     "Tools": ["Git", "GitHub", "Jupyter", "VS Code"]
   },

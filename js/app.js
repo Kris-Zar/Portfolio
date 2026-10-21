@@ -136,7 +136,7 @@
           <div class="project-cover-art" style="border-bottom: 3.5px solid ${p.accent}">
             <div class="cover-schematic-bg"></div>
             <div class="cover-content">
-              <div class="cover-badge">${p.tab === 'Fraud AI' ? '🛡️ FRAUD INTELLIGENCE' : p.tab === 'Human AI' ? '🧠 MULTIMODAL EMOTION' : p.tab === 'GenAI' ? '⚡ VISION LLM' : p.tab === 'Healthcare AI' ? '❤️ CLINICAL PREDICTOR' : '⏱️ FOCUS CADENCE'}</div>
+              <div class="cover-badge">${p.tab === 'Fraud AI' ? '🛡️ FRAUD INTELLIGENCE' : p.tab === 'Human AI' ? '🧠 MULTIMODAL EMOTION' : p.tab === 'GenAI' ? '⚡ VISION LLM' : p.tab === 'RecSys' ? '🎬 HYBRID RECOMMENDER' : p.tab === 'Healthcare AI' ? '❤️ CLINICAL PREDICTOR' : '⏱️ FOCUS CADENCE'}</div>
               <div class="cover-lead-title">${p.title}</div>
               <div class="cover-lead-subtitle">${p.tagline}</div>
             </div>

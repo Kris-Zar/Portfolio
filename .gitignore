@@ -1,0 +1,11 @@
+# Dependencies and external exploration repositories
+liquidGL_repo/
+scratch/
+.tempmediaStorage/
+.system_generated/
+*.log
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini

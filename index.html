@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Engineer · Automation Systems — Graphic Novel Portfolio</title>
+  <meta name="description" content="AI Engineer & Automation Systems builder portfolio. Built from first principles. Grounded, honest, purposeful engineering.">
+  <link rel="icon" href="assets/images/favicon.ico">
+
+  <!-- Core Graphic Novel Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- GSAP & Lenis CDN Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- Portfolio Data Store -->
+  <script src="data/portfolio-data.js"></script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       FIXED STAGE FRAME (PINNED VIEWPORT CANVASES)
+       ========================================================================= -->
+  <div class="stage-frame" id="stageFrame">
+    <div class="stage" id="stage">
+      
+      <!-- Canvas for Floating Ink Flecks / Atmospheric Dust -->
+      <canvas class="dust-canvas" id="dustCanvas" aria-hidden="true"></canvas>
+
+      <!-- Autonomous / Interactive Cursor -->
+      <div class="comic-cursor" id="comicCursor" aria-hidden="true">
+        <div class="cursor-arrow">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 2L3 21L8 16L12 23L15 21.5L11 14.5L18 14.5L3 2Z" fill="#1C1B1F" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cursor-name-pill" id="cursorPill">Builder</div>
+      </div>
+
+      <!-- Top Comic Navigation Bar -->
+      <header class="top-bar">
+        <div class="brand-badge">
+          <span class="brand-title">
+            <span class="comic-pen">🖋️</span>
+            <span id="brandName">AI Engineer</span>
+          </span>
+          <span class="status-pill">
+            <span class="status-dot"></span>
+            <span id="brandStatus">Building Systems</span>
+          </span>
+        </div>
+
+        <div class="nav-controls">
+          <!-- Audio Ambience Toggle -->
+          <button class="btn-comic sound-btn" id="soundBtn" aria-label="Toggle ambient sound">
+            <span class="sound-bars" aria-hidden="true">
+              <i></i><i></i><i></i><i></i>
+            </span>
+            <span id="soundLabel">Sound Off</span>
+          </button>
+
+          <!-- Quick Jump & Config Buttons -->
+          <button class="btn-comic" data-jump="works">Works</button>
+          <button class="btn-comic" data-jump="kanpur">Kanpur</button>
+          <button class="btn-comic solid" data-jump="contact">Contact</button>
+        </div>
+      </header>
+
+      <!-- Concentric Rings Tunnel (Portal into the Sketchpad) -->
+      <div class="tunnel-stage" id="tunnelStage" aria-hidden="true">
+        <div class="tunnel-ring" style="width: 320px; height: 320px;"></div>
+        <div class="tunnel-ring" style="width: 580px; height: 580px;"></div>
+        <div class="tunnel-ring" style="width: 860px; height: 860px;"></div>
+        <div class="tunnel-ring" style="width: 1200px; height: 1200px;"></div>
+      </div>
+
+      <!-- =========================================================================
+           SCENE 1: THE OPENING HOOK (The Drafting Table)
+           ========================================================================= -->
+      <section class="scene active" id="scene-hero" aria-label="Introduction">
+        <div class="hero-layout" id="heroLayout">
+          
+          <div class="hero-text-wrap" id="heroTextWrap">
+            <div class="hero-hook-badge" id="heroHook">Built from first principles.</div>
+            <div class="hero-title-box" id="heroTitleBox">
+              <h1 class="hero-title" id="heroName">AI Engineer</h1>
+              <div class="sel-box" id="selBox" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+              </div>
+              <span class="dim-tag" id="dimTag" aria-hidden="true">840 × 110 px</span>
+            </div>
+            <p class="hero-role" id="heroRole">AI Engineer · Automation Systems</p>
+            <p class="hero-tagline" id="heroTagline">"Making things that make life work."</p>
+          </div>
+
+          <!-- Illustrated Character at Drafting Table (Mature Indie Graphic Novel Style) -->
+          <div class="drafting-desk-container" id="deskContainer">
+            <svg class="drafting-desk-svg" id="deskSvg" viewBox="0 0 700 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Desk Lamp / Warm Ambient Glow Cone -->
+              <path d="M110 50 L30 420 L280 420 Z" fill="rgba(232, 168, 56, 0.07)" />
+
+              <!-- Soft Terminal Screen Ambient Glow from Laptop -->
+              <path d="M550 145 L420 400 L680 400 Z" fill="rgba(56, 189, 248, 0.06)" />
+
+              <!-- Drafting Table Wood Surface with Beveled Edge -->
+              <rect x="30" y="240" width="640" height="20" rx="4" fill="#C88A58" stroke="#18171C" stroke-width="3" />
+              <rect x="35" y="260" width="630" height="6" fill="#9F683A" stroke="#18171C" stroke-width="1.5" />
+              <!-- Desk Legs -->
+              <path d="M90 266 L75 420 M610 266 L625 420 M350 266 L350 420" stroke="#18171C" stroke-width="4.5" stroke-linecap="round" />
+
+              <!-- Left Side: Architectural Desk Lamp -->
+              <path d="M80 240 L115 140 L75 80" stroke="#18171C" stroke-width="4" stroke-linecap="round" fill="none" />
+              <path d="M55 85 L105 60 L92 42 L45 68 Z" fill="#242B35" stroke="#18171C" stroke-width="2.5" />
+              <circle cx="115" cy="140" r="4.5" fill="#E8A838" stroke="#18171C" stroke-width="2" />
+
+              <!-- Left Side: Moleskine Grid Notebook & Pen -->
+              <rect x="110" y="230" width="85" height="24" rx="3" fill="#FDFBF7" stroke="#18171C" stroke-width="2" />
+              <line x1="120" y1="237" x2="185" y2="237" stroke="#CBD5E1" stroke-width="1.5" />
+              <line x1="120" y1="244" x2="175" y2="244" stroke="#CBD5E1" stroke-width="1.5" />
+              <!-- Ribbon Bookmark -->
+              <path d="M145 230 L145 252 L149 248 L153 252 L153 230 Z" fill="#D95338" />
+              <!-- Pen on Desk -->
+              <line x1="88" y1="234" x2="88" y2="254" stroke="#18171C" stroke-width="3" stroke-linecap="round" />
+              <line x1="88" y1="234" x2="88" y2="238" stroke="#E8A838" stroke-width="3" stroke-linecap="round" />
+
+              <!-- Neck (Smooth skin fill matching face, zero seams) -->
+              <path d="M326 210 L374 210 L376 254 L324 254 Z" fill="#F5C89A" />
+              <path d="M328 226 Q350 238 372 226" fill="none" stroke="rgba(184, 134, 110, 0.35)" stroke-width="1.8" />
+
+              <!-- Character Body (Seamless, Balanced Symmetrical Torso & Relaxed Shoulders) -->
+              <path d="M210 420 
+                       C212 355, 215 305, 225 270 
+                       C240 244, 280 244, 322 244 
+                       Q350 258 378 244 
+                       C420 244, 460 244, 475 270 
+                       C485 305, 488 355, 490 420 Z" 
+                    fill="#1E232B" stroke="#1C1B1F" stroke-width="2" stroke-linejoin="round" />
+
+              <!-- Clean Crew Neck Collar Seam -->
+              <path d="M322 244 Q350 258 378 244" fill="none" stroke="#1C1B1F" stroke-width="2" stroke-linecap="round" />
+
+              <!-- Character Head (Human Proportions, Ligne Claire Inking) -->
+              <path id="charHead" d="M302 136 C296 195 318 228 350 228 C382 228 404 195 398 136 C394 88 306 88 302 136 Z" fill="#F5C89A" stroke="#1C1B1F" stroke-width="2" />
+              
+              <!-- Clean Ears -->
+              <ellipse cx="298" cy="154" rx="4.5" ry="9" fill="#F0BC8E" stroke="#1C1B1F" stroke-width="2" />
+              <ellipse cx="402" cy="154" rx="4.5" ry="9" fill="#F0BC8E" stroke="#1C1B1F" stroke-width="2" />
+
+              <!-- CHANGE 1: Flat-Top Crop with Scalloped Hairline -->
+              <path d="M298 122 C296 90 298 68 308 66 L392 66 C402 68 404 90 402 122 
+                       Q389 112 376 116 
+                       Q363 108 350 114 
+                       Q337 108 324 116 
+                       Q311 110 298 122 Z" 
+                    fill="#1C1B1F" stroke="#18171C" stroke-width="3" stroke-linejoin="round" />
+
+              <!-- Modern Sleek Thin Frame Glasses -->
+              <rect x="312" y="132" width="34" height="24" rx="6" fill="rgba(255,255,255,0.3)" stroke="#18171C" stroke-width="2.2" />
+              <rect x="354" y="132" width="34" height="24" rx="6" fill="rgba(255,255,255,0.3)" stroke="#18171C" stroke-width="2.2" />
+              <line x1="346" y1="142" x2="354" y2="142" stroke="#18171C" stroke-width="2.2" />
+              <line x1="300" y1="140" x2="312" y2="142" stroke="#18171C" stroke-width="2" />
+              <line x1="388" y1="142" x2="400" y2="140" stroke="#18171C" stroke-width="2" />
+
+              <!-- Eyebrows (Calm, Focused, Intentional) -->
+              <path d="M314 127 Q329 122 344 126" stroke="#18171C" stroke-width="2.5" stroke-linecap="round" fill="none" />
+              <path d="M356 126 Q371 122 386 127" stroke="#18171C" stroke-width="2.5" stroke-linecap="round" fill="none" />
+
+              <!-- Interactive Pupils (Almond Eye Sockets + Dynamic Mouse Tracking) -->
+              <circle id="pupil-l" cx="329" cy="144" r="4.5" fill="#18171C" />
+              <circle id="pupil-r" cx="371" cy="144" r="4.5" fill="#18171C" />
+              <!-- Specular Life Gleam -->
+              <circle cx="330.5" cy="142.5" r="1.5" fill="#FFFFFF" />
+              <circle cx="372.5" cy="142.5" r="1.5" fill="#FFFFFF" />
+
+              <!-- Refined Nose Profile -->
+              <path d="M350 146 L350 162 L356 163" stroke="#B8866E" stroke-width="2" stroke-linecap="round" fill="none" />
+
+              <!-- Calm, Confident Natural Smile -->
+              <path d="M341 176 Q350 183 359 176" stroke="#8E5A44" stroke-width="2.5" stroke-linecap="round" fill="none" />
+
+
+              <!-- Coaster with Chai Glass / Candle -->
+              <rect x="442" y="238" width="24" height="6" rx="2" fill="#D97706" />
+              <rect x="444" y="202" width="20" height="36" rx="3" fill="#E0E7FF" stroke="#18171C" stroke-width="2.2" />
+              <path d="M446 210 L462 210 L460 236 L448 236 Z" fill="#B45309" />
+              <!-- Steam Wisps -->
+              <path d="M451 194 Q447 182 453 170 M457 194 Q462 180 455 168" stroke="#D97706" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7" />
+
+              <!-- =============================================================
+                   RIGHT SIDE: SLEEK LAPTOP WITH GLOWING TERMINAL (ZOOM PORTAL TARGET)
+                   Center coordinate: x=550, y=182 (78.6%, 43.3%)
+                   ============================================================= -->
+              <g id="laptopContainer">
+                <!-- Laptop Base on Desk with Trackpad -->
+                <path d="M472 238 L628 238 L620 246 L480 246 Z" fill="#94A3B8" stroke="#18171C" stroke-width="2.5" />
+                <rect x="532" y="239" width="36" height="5" rx="1" fill="#64748B" />
+
+                <!-- Angled Display Screen Bezel -->
+                <rect x="484" y="136" width="132" height="92" rx="5" fill="#1E232B" stroke="#18171C" stroke-width="3" />
+
+                <!-- Glowing Code Editor Display (The Portal) -->
+                <rect id="laptopScreen" x="492" y="142" width="116" height="80" rx="3" fill="#0D1117" stroke="#38BDF8" stroke-width="1.5" />
+
+                <!-- Window Top Header Bar with Mini Dots -->
+                <rect x="492" y="142" width="116" height="12" rx="3" fill="#161B22" />
+                <circle cx="500" cy="148" r="2" fill="#EF4444" />
+                <circle cx="506" cy="148" r="2" fill="#FBBF24" />
+                <circle cx="512" cy="148" r="2" fill="#22C55E" />
+                <text x="520" y="151" fill="#64748B" font-family="JetBrains Mono" font-size="5" font-weight="600">terminal — bash</text>
+
+                <!-- Code Lines / Terminal Text -->
+                <text x="498" y="164" fill="#38BDF8" font-family="JetBrains Mono" font-size="7" font-weight="700">&gt; systems.run()</text>
+                <rect x="498" y="171" width="55" height="3" rx="1" fill="#4ADE80" opacity="0.85" />
+                <rect x="498" y="177" width="85" height="3" rx="1" fill="#C084FC" opacity="0.85" />
+                <rect x="498" y="183" width="40" height="3" rx="1" fill="#38BDF8" opacity="0.85" />
+                <rect x="498" y="189" width="70" height="3" rx="1" fill="#FCD34D" opacity="0.85" />
+                
+                <!-- Blinking Code Prompt Cursor -->
+                <rect id="terminalCursor" x="572" y="188" width="3.5" height="5" fill="#38BDF8" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- Bottom-Right Subtle Scroll Hint (Quiet Aside) -->
+          <div class="scroll-hint-corner" id="scrollHint">
+            <span class="hint-text">Scroll to step inside</span>
+            <span class="hint-arrow" aria-hidden="true">↓</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SCENE 2: THE BELIEF STATEMENT (Carving Paths)
+           ========================================================================= -->
+      <section class="scene" id="scene-belief" aria-label="Belief Statement">
+        <div class="belief-wrap">
+          <div class="comic-box dark">
+            <div class="comic-kicker">✦ THE STANCE</div>
+            <h2 class="belief-lead">
+              I don't follow paths that were already carved.<br>
+              <span class="carve-highlight">
+                I carve my own.
+                <span class="chisel-strike" id="chiselStrike"></span>
+              </span>
+            </h2>
+            <p class="belief-body">
+              I don't build things that just work. I build things that are meaningful, polished, and fitted so well to the problem that you wonder why they didn't exist before.
+            </p>
+            <p class="belief-punchline">
+              That's the only kind of work I know how to do.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SCENE 3: WHAT I ACTUALLY DO (The Automation Pipeline)
+           ========================================================================= -->
+      <section class="scene" id="scene-craft" aria-label="What I Do">
+        <div class="craft-layout">
+          <div class="craft-left">
+            <div class="comic-box">
+              <div class="comic-kicker">⚙️ THE CRAFT</div>
+              <h2 class="comic-headline">I build automation systems powered by AI.</h2>
+              <p class="comic-p">
+                Things that handle the repetitive, the tedious, and the easy-to-miss — so you can focus on what actually matters.
+              </p>
+              <div style="margin-top: 18px; font-weight: 800; font-size: 18px; color: var(--accent-terracotta);">
+                "Not magic. Just good thinking, applied carefully."
+              </div>
+            </div>
+          </div>
+
+          <div class="craft-schematic">
+            <div class="pipeline-node">
+              <div class="node-icon">⚡</div>
+              <div>
+                <h4>Intelligent Workflows & Agents</h4>
+                <p>Handling repetitive overhead with bulletproof logic.</p>
+              </div>
+            </div>
+
+            <div class="pipeline-node">
+              <div class="node-icon">👁️</div>
+              <div>
+                <h4>Computer Vision & Edge Models</h4>
+                <p>Translating live visual feeds into instant structured data.</p>
+              </div>
+            </div>
+
+            <div class="pipeline-node">
+              <div class="node-icon">🧱</div>
+              <div>
+                <h4>First-Principles Architecture</h4>
+                <p>Fast, lean, dependable backends with zero unnecessary weight.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SCENE 4: THE ORIGIN (~2 Years In)
+           ========================================================================= -->
+      <section class="scene" id="scene-origin" aria-label="The Journey">
+        <div class="origin-layout">
+          <div class="comic-box" style="text-align: center; max-width: 820px;">
+            <div class="comic-kicker">⏳ THE ORIGIN</div>
+            <h2 class="comic-headline">~2 years in. Still building.</h2>
+            <p class="comic-p" style="margin: 8px auto 0;">
+              I started because I had problems I couldn't find tools for. Not a textbook reason. A real one. Every project started as a personal frustration and ended as something someone else might actually use.
+            </p>
+          </div>
+
+          <div class="comic-strip-3panel">
+            <div class="comic-panel">
+              <span class="panel-num">PANEL 01 · NUTRITION</span>
+              <div class="panel-art">🥑</div>
+              <p class="panel-caption">"Meal logging apps were too expensive."</p>
+              <span class="panel-resolution">→ BUILT NUTRITRACK</span>
+            </div>
+
+            <div class="comic-panel">
+              <span class="panel-num">PANEL 02 · FOCUS</span>
+              <div class="panel-art">⏱️</div>
+              <p class="panel-caption">"Studying without a system was chaos."</p>
+              <span class="panel-resolution">→ BUILT TRACKDOWN</span>
+            </div>
+
+            <div class="comic-panel">
+              <span class="panel-num">PANEL 03 · EMPATHY</span>
+              <div class="panel-art">🤍</div>
+              <p class="panel-caption">"Wanted a quiet way to check if people are okay."</p>
+              <span class="panel-resolution">→ BUILT EMOTION DETECTION</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SCENE 5: THE WORK (Scroll-Scrubbed Horizontal Track as on nesilnoble.com)
+           ========================================================================= -->
+      <section class="scene work" id="scene-works" aria-label="Selected Projects">
+        <div class="track" id="track">
+          <!-- Work Header Block -->
+          <div class="work-head">
+            <div class="comic-kicker">📁 SELECTED WORK</div>
+            <h2 class="comic-headline">Selected Projects.</h2>
+            <p class="work-desc">
+              Things I've engineered and shipped — solving real problems with reliable computer vision, edge models, and self-healing automation.
+            </p>
+            <div class="works-meta-box">
+              <div class="meta-row">
+                <span class="meta-label">Shipped Systems</span>
+                <span class="meta-val">06 Projects</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">Focus Areas</span>
+                <span class="meta-val">Vision AI · Systems · Edge</span>
+              </div>
+            </div>
+
+            <!-- Quick Category Jump Pills -->
+            <div class="works-tabs" id="worksTabs" role="tablist" aria-label="Project Categories">
+              <!-- Dynamically populated from PORTFOLIO_DATA.projects -->
+            </div>
+
+            <div class="scroll-track-indicator">
+              <span class="track-indicator-pulse"></span>
+              <span>Scroll down to walk the track →</span>
+            </div>
+          </div>
+
+          <!-- Dynamic Project Cards Container -->
+          <div class="track-cards-wrap" id="projectsGrid">
+            <!-- Dynamically populated from PORTFOLIO_DATA.projects -->
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SCENE 6: THE PHILOSOPHY (The Balance)
+           ========================================================================= -->
+      <section class="scene" id="scene-philosophy" aria-label="Philosophy">
+        <div class="philosophy-wrap">
+          <div class="comic-box dark">
+            <div class="comic-kicker">⚖️ THE PHILOSOPHY</div>
+            <h2 class="comic-headline" style="font-size: clamp(28px, 4vw, 54px);">
+              I care about the line between powerful and approachable.
+            </h2>
+            <p class="comic-p" style="margin: 16px auto 0;">
+              A system that needs a manual isn't smart — it's just complicated. The real work is making something capable enough to handle the hard parts, and simple enough that you trust it.
+            </p>
+            <div style="margin-top: 24px; font-family: var(--font-display); font-size: 26px; font-weight: 800; color: var(--accent-gold);">
+              That's where I build.
+            </div>
+          </div>
+
+          <!-- Minimalist Vector Balance Scale -->
+          <svg class="balance-scale-svg" viewBox="0 0 400 100" fill="none">
+            <line x1="40" y1="50" x2="360" y2="50" stroke="#FAF7F0" stroke-width="4" stroke-linecap="round" />
+            <polygon points="200,30 215,65 185,65" fill="#E8A838" stroke="#FAF7F0" stroke-width="2" />
+            <!-- Left Pan: Complex Engineering -->
+            <circle cx="60" cy="50" r="18" fill="#14B8A6" stroke="#FAF7F0" stroke-width="3" />
+            <text x="60" y="85" text-anchor="middle" fill="#FAF7F0" font-family="Space Grotesk" font-weight="700" font-size="12">CAPABILITY</text>
+            <!-- Right Pan: Simple Trust -->
+            <circle cx="340" cy="50" r="18" fill="#D95338" stroke="#FAF7F0" stroke-width="3" />
+            <text x="340" y="85" text-anchor="middle" fill="#FAF7F0" font-family="Space Grotesk" font-weight="700" font-size="12">SIMPLICITY</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SCENE 7: BASED IN KANPUR (The Human Anchor & The Ride)
+           ========================================================================= -->
+      <section class="scene" id="scene-kanpur" aria-label="Kanpur Roots">
+        <div class="kanpur-layout">
+          <div class="kanpur-header">
+            <div class="comic-box">
+              <div class="comic-kicker">📍 THE HUMAN ANCHOR</div>
+              <h2 class="comic-headline">Based in Kanpur, UP.</h2>
+              <p class="comic-p" style="font-weight: 600; color: var(--ink);">
+                The Manchester of the East — industrial by heritage, street-food by soul, and the Ganga flowing quietly through all of it.
+              </p>
+              <p class="comic-p" style="margin-top: 6px; font-size: 14.5px;">
+                Temples on every corner. A place where the sacred and the everyday sit side by side without feeling like a contradiction. It shapes how you think: direct, grounded, unhurried about the things that matter.
+              </p>
+            </div>
+          </div>
+
+          <!-- Animated Kanpur Skyline & Vikram Auto-Rickshaw -->
+          <div class="kanpur-panorama">
+            <!-- Skyline SVG (Industrial Mills, Temple Shikharas, Ghats) -->
+            <svg class="kanpur-skyline-svg" viewBox="0 0 1000 160" preserveAspectRatio="none">
+              <!-- Distant Ganga Waves -->
+              <path d="M0 160 Q150 145 300 155 T600 150 T900 155 L1000 160 Z" fill="rgba(20, 184, 166, 0.15)" />
+              <!-- Industrial Brick Chimneys & Temple Silhouettes -->
+              <rect x="120" y="60" width="18" height="90" fill="#2E2B38" />
+              <rect x="180" y="80" width="22" height="70" fill="#3E394A" />
+              <!-- Temple Shikhara Spire -->
+              <polygon points="320,50 335,140 305,140" fill="#A84332" />
+              <polygon points="460,70 472,140 448,140" fill="#3E394A" />
+              <!-- Ghat Steps -->
+              <path d="M0 150 L1000 150" stroke="#18171C" stroke-width="4" />
+            </svg>
+
+            <!-- Ground Road Strip -->
+            <div class="road-strip"></div>
+
+            <!-- Stylized Animated Kanpur Vikram Auto-Rickshaw -->
+            <div class="kanpur-auto-wrap" id="kanpurAuto">
+              <span class="honk-bubble" id="honkBtn" title="Click to honk!">BEEP! 📯</span>
+              <svg class="auto-svg" viewBox="0 0 240 160" fill="none">
+                <!-- Vehicle Body (Classic UP Green/Yellow Auto) -->
+                <path d="M30 110 L50 45 L150 45 L195 85 L200 120 L30 120 Z" fill="#EAB308" stroke="#18171C" stroke-width="3.5" stroke-linejoin="round" />
+                <!-- Green Lower Half -->
+                <path d="M30 90 L200 90 L200 120 L30 120 Z" fill="#15803D" stroke="#18171C" stroke-width="3" />
+                <!-- Open Passenger Cabin Window -->
+                <rect x="65" y="55" width="75" height="40" rx="4" fill="#FEF08A" stroke="#18171C" stroke-width="2.5" />
+                <!-- Windshield -->
+                <path d="M148 55 L180 85 L148 85 Z" fill="#E0F2FE" stroke="#18171C" stroke-width="2.5" />
+                <!-- Luggage on Roof -->
+                <rect x="70" y="32" width="60" height="13" rx="3" fill="#B45309" stroke="#18171C" stroke-width="2.5" />
+
+                <!-- Front Wheel -->
+                <g class="auto-wheel" id="autoWheelFront" transform="translate(180, 120)">
+                  <circle cx="0" cy="0" r="18" fill="#1C1B1F" stroke="#FFF" stroke-width="2" />
+                  <circle cx="0" cy="0" r="7" fill="#9CA3AF" />
+                  <line x1="-14" y1="0" x2="14" y2="0" stroke="#FFF" stroke-width="2" />
+                </g>
+
+                <!-- Rear Wheel -->
+                <g class="auto-wheel" id="autoWheelRear" transform="translate(65, 120)">
+                  <circle cx="0" cy="0" r="18" fill="#1C1B1F" stroke="#FFF" stroke-width="2" />
+                  <circle cx="0" cy="0" r="7" fill="#9CA3AF" />
+                  <line x1="-14" y1="0" x2="14" y2="0" stroke="#FFF" stroke-width="2" />
+                </g>
+
+                <!-- Exhaust Smoke Puffs Container -->
+                <g id="exhaustPuffs"></g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SCENE 8: THE SIGNAL / CONTACT (The Handover)
+           ========================================================================= -->
+      <section class="scene" id="scene-contact" aria-label="Contact">
+        <div class="contact-wrap">
+          <div class="comic-box" style="max-width: 680px;">
+            <div class="comic-kicker">📡 THE SIGNAL</div>
+            <h2 class="comic-headline" style="font-size: 38px;">Let's build something real.</h2>
+            <p class="comic-p" style="margin: 12px auto 0;">
+              Open to high-impact automation systems, intelligent AI pipelines, and conversations over chai.
+            </p>
+
+            <div class="contact-actions">
+              <div class="copy-mail-wrap" id="copyMailBtn" title="Click to copy email">
+                <span>builder@firstprinciples.dev</span>
+                <span style="font-size: 13px;">📋 Copy</span>
+              </div>
+            </div>
+
+            <div class="social-links-bar" id="socialsBar">
+              <!-- Injected from PORTFOLIO_DATA -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           BOTTOM NAVIGATION RULER WITH TICK MARKS
+           ========================================================================= -->
+      <div class="bottom-ruler">
+        <div class="ruler-track" id="rulerTrack">
+          <div class="ruler-progress-head" id="rulerHead"></div>
+        </div>
+        <div class="ruler-markers" id="rulerMarkers">
+          <!-- Populated from PORTFOLIO_DATA.chapters -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Virtual Scroll Space Track (Controls overall scrub length) -->
+  <div class="scroll-space" id="scrollSpace"></div>
+
+  <!-- =========================================================================
+       IN-SITU CASE STUDY DRAWER MODAL
+       ========================================================================= -->
+  <div class="case-drawer" id="caseDrawer" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="drawer-panel" id="drawerPanel">
+      <button class="btn-comic drawer-close-btn" id="drawerCloseBtn">← Back to Journey</button>
+      
+      <div id="drawerContent">
+        <!-- Injected on click -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Element for Tapri Lo-fi Sound -->
+  <audio id="ambientAudio" loop preload="none">
+    <source src="assets/audio/ambient.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Application Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>

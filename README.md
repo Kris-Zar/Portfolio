@@ -29,9 +29,6 @@ I build end-to-end AI applications — from data pipelines and model evaluation 
 This portfolio is an interactive showcase, not just a static résumé. It brings together:
 
 - **Selected work:** Six projects across fraud detection, emotion AI, nutrition analysis, recommendation systems, healthcare prediction, and productivity.
-- **Liquid Glass optics:** A WebGPU/WebGL2-inspired visual experience with refraction, chromatic aberration, specular highlights, and fluid interactions.
-- **Interactive magnifier:** A draggable liquid-glass loupe with RGB dispersion.
-- **Live optics controls:** Sapphire, Frosted, Prismatic, and Mercury visual presets, plus adjustable rendering parameters.
 - **Motion and navigation:** Floating navigation and smooth scrolling powered by GSAP and Lenis.
 - **Personal profile:** Skills, education, certifications, engineering philosophy, and contact links.
 
@@ -87,24 +84,6 @@ Portfolio/
 The main content configuration lives in `data/portfolio-data.js`. It contains the profile, capabilities, project cards, skills, education, certifications, and contact information.
 
 You can also use the **Info Sheet** editor in the website to apply supported content changes live in the browser.
-
-## Run locally
-
-This is a static website. You can serve the repository with Python:
-
-```bash
-git clone https://github.com/Kris-Zar/Portfolio.git
-cd Portfolio
-python -m http.server 3000
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-Alternatively, use:
-
-```bash
-npx serve .
-```
 
 ## Deployment
 
